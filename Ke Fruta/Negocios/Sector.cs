@@ -43,7 +43,10 @@ namespace Ke_Fruta.Negocios
 
         public void AgregarSector()
         {
-            persistencia.AbrirConexion();
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
 
@@ -66,7 +69,10 @@ namespace Ke_Fruta.Negocios
         }
         public void EliminarSector()
         {
-            persistencia.AbrirConexion();
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql, sql1, sql2;
             object cantfilas;
 
@@ -102,7 +108,10 @@ namespace Ke_Fruta.Negocios
         }
         public void BuscarSector()
         {
-            persistencia.AbrirConexion();
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
             ADODB.Recordset rs;
@@ -136,7 +145,10 @@ namespace Ke_Fruta.Negocios
         //________________________
         public void Actualizar()
         {
-            persistencia.AbrirConexion();
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
 

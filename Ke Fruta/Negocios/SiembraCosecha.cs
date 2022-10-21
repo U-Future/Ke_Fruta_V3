@@ -87,7 +87,10 @@ namespace Ke_Fruta.Negocios
 
         public void BuscarSiembraCosecha()
         {
-            persistencia.AbrirConexion();
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
             ADODB.Recordset rs;
@@ -102,22 +105,28 @@ namespace Ke_Fruta.Negocios
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
                 if(rs.RecordCount > 0)
                 {
                     _Existe = true;
                     _idPro = Convert.ToString(rs.Fields[1].Value);
+                    persistencia.cn.Close();
                 }
                 else
                 {
                     _Existe = false;
+                    persistencia.cn.Close();
                 }
             }
         }
         public void ModificarSiembraCosecha()
         {
-            persistencia.AbrirConexion();
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
 
@@ -128,16 +137,22 @@ namespace Ke_Fruta.Negocios
                 try
                 {
                     persistencia.cn.Execute(sql, out cantfilas);
+                    persistencia.cn.Close();
+                    BuscarDatosProductorNotificar();
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
             }
         }
         public void RegistrarSiembraCosecha()
         {
-            persistencia.AbrirConexion();
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
 
@@ -148,9 +163,12 @@ namespace Ke_Fruta.Negocios
                 try
                 {
                     persistencia.cn.Execute(sql, out cantfilas);
+                    persistencia.cn.Close();
+                    BuscarDatosProductorNotificar();
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
             }
@@ -158,7 +176,10 @@ namespace Ke_Fruta.Negocios
         //______________________________________
         public void ConsultarSiembraID()
         {
-            persistencia.AbrirConexion();
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
             ADODB.Recordset rs;
@@ -172,6 +193,7 @@ namespace Ke_Fruta.Negocios
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
                 if (rs.RecordCount > 0)
@@ -191,16 +213,23 @@ namespace Ke_Fruta.Negocios
                     row["Cultivo"] = Convert.ToString(rs.Fields[4].Value);
 
                     _dt.Rows.Add(row);
+                    _idPro = Convert.ToString(rs.Fields[1].Value);
+                    _idSec = Convert.ToString(rs.Fields[0].Value);
+                    persistencia.cn.Close();
                 }
                 else
                 {
                     _Existe = false;
+                    persistencia.cn.Close();
                 }
             }
         }
         public void ConsultarSiembraIDPro()
         {
-            persistencia.AbrirConexion();
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
             ADODB.Recordset rs;
@@ -215,6 +244,7 @@ namespace Ke_Fruta.Negocios
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
                 if (rs.RecordCount > 0)
@@ -237,14 +267,53 @@ namespace Ke_Fruta.Negocios
                         _dt.Rows.Add(row);
                         rs.MoveNext();
                     }
+                    persistencia.cn.Close();
                 }
                 else
                 {
                     _Existe = false;
+                    persistencia.cn.Close();
                 }
 
             }
         }
+        //______________________________________
+        public void BuscarDatosProductorNotificar()
+        {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
+            string sql;
+            object cantfilas;
+            ADODB.Recordset rs;
 
+            if(persistencia.cn.State != 0)
+            {
+                sql = "Select * from usuario where ID = '" + _idPro + "'";
+                try
+                {
+                    rs = persistencia.cn.Execute(sql, out cantfilas);
+                }
+                catch
+                {
+                    persistencia.cn.Close();
+                    return;
+                }
+                if(rs.RecordCount > 0)
+                {
+                    Negocios.Notificar notificar = new Negocios.Notificar();
+                    notificar.Email = Convert.ToString(rs.Fields[3].Value);
+                    notificar.IdSec = _idSec;
+                    notificar.Nombre = Convert.ToString(rs.Fields[1].Value);
+                    notificar.FCosecha = _FCos;
+                    notificar.FSiembra = _FSie;
+                    notificar.Cultivo = _Cultivo;
+                    notificar.NotificarSiembraCosecha();
+                    persistencia.cn.Close();
+                }
+                
+            }
+        }
     }
 }

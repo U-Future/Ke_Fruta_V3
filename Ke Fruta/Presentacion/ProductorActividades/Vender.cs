@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32.SafeHandles;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -87,84 +88,151 @@ namespace Ke_Fruta.Presentacion.ProductorActividades
 
         private void btnVender_Click(object sender, EventArgs e)
         {
-            /*
-            string sql;
-            object cantfilas;
-            ADODB.Recordset rs;
-            string nombre;
-            int cantidad, cantidadVender, precio, kg;
-            Datos.Persistencia persistencia = new Datos.Persistencia();
-            persistencia.AbrirConexion();
-            if (persistencia.cn.State != 0)
+            if (txtID.Text.Equals(""))
             {
-                sql = "Select * from insumos where ID_Productor ='"+Negocios.Metodos.id+"' and ID_Insumo ='"+txtID.Text+"' && Cantidad > 0";
 
-                try
+            }
+            else if (txtCantidad.Text.Equals(""))
+            {
+
+            }
+            else if (txtPrecio.Text.Equals(""))
+            {
+
+            }
+            else
+            {
+                Negocios.Insumos insumos = new Negocios.Insumos();
+                Negocios.Vende vende = new Negocios.Vende();
+                Negocios.Usuario usuario = new Negocios.Usuario();
+                Negocios.Metodos metodos = new Negocios.Metodos();
+                Negocios.Productos productos = new Negocios.Productos();
+
+                //try
+                //{
+                    usuario.nombre = metodos.nombre;
+                    usuario.BusquedaXNombre();
+                    insumos.IdCliente = usuario.id;
+                    insumos.IdInsumo = txtID.Text;
+                    insumos.BuscarExistenciaInsumo();
+                if (insumos.Cantidad < Convert.ToInt32(txtCantidad.Text))
                 {
-                    rs = Datos.Persistencia.cn.Execute(sql, out cantfilas);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    return;
-                }
-                if (rs.RecordCount > 0)
-                {
-                    cantidadVender = Convert.ToInt32(txtCantidad.Text);
-                    precio = Convert.ToInt32(txtPrecio.Text);
-                    cantidad = Convert.ToInt32(rs.Fields[5].Value);
-                    nombre = Convert.ToString(rs.Fields[2].Value);
-                    kg = Convert.ToInt32(rs.Fields[4].Value);
-
-                    if (cantidadVender > cantidad)
-                    {
-                        MessageBox.Show("La cantidad que deseea vender paso la cantidad que usted posee.","Aviso");
-                        txtCantidad.Focus();
-                    }
-                    else
-                    {
-                        try
-                        {
-                            Negocios.Metodos.VenderProductor(txtID.Text, kg,cantidadVender, precio, nombre);
-                            MessageBox.Show("Vendiste el producto: "+txtID.Text +" Cantidad: "+cantidadVender +" Precio: "+ precio , "Concretada");
-                            txtID.Clear();
-                            txtCantidad.Clear();
-                            txtPrecio.Clear();
-                            txtID.Enabled = false;
-                            txtCantidad.Enabled = false;
-                            txtPrecio.Enabled = false;
-                            btnCargarPro.Enabled = true;
-                            dataViewMisProductos.Rows.Clear();
-                            btnVender.Enabled = false;
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                            return;
-                        }
-                    }
-
-
+                    MessageBox.Show("No posee la cantidad que desea vender, usted posee: "+insumos.Cantidad, "Aviso");
+                    txtCantidad.Focus();
                 }
                 else
                 {
-                    MessageBox.Show("El producto que deseea vender no existe en su inventario.", "Aviso");
-                    txtID.Focus();
-                }
-            }
-            */
-        }
+                    if (insumos.Tengo == true)
+                    {
+                        dataViewMisProductos.DataSource = insumos.dt;
+                        if (MessageBox.Show("¿Esta seguro que desea vender este producto?", "Confirmacion",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            vende.IdProductor = usuario.id;
+                            vende.IdInsumo = txtID.Text;
+                            vende.Nombre = insumos.NombreProducto;
+                            vende.Cantidad = txtCantidad.Text;
+                            vende.Precio = txtPrecio.Text;
+                            vende.Vender();
+                            if (vende.Realizado == true)
+                            {
+                                insumos.IdCliente = usuario.id;
+                                insumos.IdInsumo = txtID.Text;
+                                insumos.Cantidad = Convert.ToInt32(txtCantidad.Text);
+                                insumos.EliminarInsumo();
+                                if (insumos.Realizado == true)
+                                {
+                                    productos.Nombre = insumos.NombreProducto;
+                                    productos.VerificoInsumoProductor();
+                                    if (productos.Existe)
+                                    {
+                                        productos.Cantidad = Convert.ToInt32(txtCantidad.Text);
+                                        productos.Agregar();
+                                        if (productos.Agregado == true)
+                                        {
+                                            MessageBox.Show("La venta se realizo exitosamenete 1", "Aviso");
+                                            txtCantidad.Clear();
+                                            txtID.Clear();
+                                            txtPrecio.Clear();
+                                            CargarMisInsumos();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Hubo problemas agregar");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        productos.Cantidad = Convert.ToInt32(txtCantidad.Text);
+                                        productos.Precio = Convert.ToInt32(txtPrecio.Text);
+                                        productos.KG = insumos.Kg;
+                                        productos.Nombre = insumos.NombreProducto;
+                                        productos.ComprarProductoNoExistente();
+                                        if (productos.Registrado == true)
+                                        {
+                                            MessageBox.Show("La venta se realizo exitosamenete 2", "Aviso");
+                                            txtCantidad.Clear();
+                                            txtID.Clear();
+                                            txtPrecio.Clear();
+                                            CargarMisInsumos();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Hubo problemas");
+                                        }
+                                    }
+                                }
+                                else
+                                {
 
-        private void pbxSalir_Click(object sender, EventArgs e)
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Chau");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Compra Cancelada", "Aviso");
+                            txtID.Clear();
+                            txtCantidad.Clear();
+                            txtPrecio.Clear();
+                            CargarMisInsumos();
+                        }
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show(ex.Message);
+                //    return;
+                //}
+            }
+        }
+        private void btnVolver_Click(object sender, EventArgs e)
         {
             Productor productor = new Productor();
             productor.Show();
             this.Hide();
         }
-
-        private void pbxMinimizar_Click(object sender, EventArgs e)
+        public void CargarMisInsumos()
         {
-            this.WindowState = FormWindowState.Minimized;
+            Negocios.Insumos insumos = new Negocios.Insumos();
+            insumos.CargarMisInsumos();
+            if(insumos.Tengo == true)
+            {
+                dataViewMisProductos.DataSource = insumos.dt;
+            }
+            else
+            {
+                MessageBox.Show("No posee insumos para vender", "Aviso");
+            }
         }
     }
 }

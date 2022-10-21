@@ -20,193 +20,36 @@ namespace Ke_Fruta.Compra
 
         private void btnCargar_Click(object sender, EventArgs e)
         {
-            /*
-            dataViewProductos.Rows.Clear();
-
             if (rdbtnFertilizantes.Checked)
             {
-                string sql;
-                ADODB.Recordset rs;
-                object cantfilas;
-
-                if (Datos.Persistencia.cn.State != 0)
-                {
-                    sql = "Select * from productos where Tipo = 'Fertilizante' && Stock > 0"; 
-                    try
-                    {
-                        rs = Datos.Persistencia.cn.Execute(sql, out cantfilas);
-                    }
-                    catch
-                    {
-                        return;
-                    }
-                    if (rs.RecordCount > 0)
-                    {
-                        while (!rs.EOF)
-                        {
-                            int rowEscribir = dataViewProductos.Rows.Count - 1;
-                            dataViewProductos.Rows.Add(1);
-
-                            dataViewProductos.Rows[rowEscribir].Cells[0].Value = rs.Fields[0].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[1].Value = rs.Fields[1].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[2].Value = rs.Fields[2].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[3].Value = rs.Fields[3].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[4].Value = rs.Fields[4].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[5].Value = rs.Fields[5].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[6].Value = rs.Fields[7].Value;
-
-                            rs.MoveNext();
-                        }
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("No contamos con stock en Fertilizantes","Aviso");
-                    }
-                }
-
+                CargarFertilizante();
             }
             else if (rdbtnHerFun.Checked)
             {
-                string sql;
-                ADODB.Recordset rs;
-                object cantfilas;
-                if (Datos.Persistencia.cn.State != 0)
-                {
-                    sql = "Select * from productos where Tipo = 'Herbicida' || Tipo = 'Fungicida' && Stock > 0";
-
-                    try
-                    {
-                        rs = Datos.Persistencia.cn.Execute(sql, out cantfilas);
-                    }
-                    catch
-                    {
-                        return;
-                    }
-                    if (rs.RecordCount > 0)
-                    {
-                        while (!rs.EOF)
-                        {
-                            int rowEscribir = dataViewProductos.Rows.Count - 1;
-                            dataViewProductos.Rows.Add(1);
-
-                            dataViewProductos.Rows[rowEscribir].Cells[0].Value = rs.Fields[0].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[1].Value = rs.Fields[1].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[2].Value = rs.Fields[2].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[3].Value = rs.Fields[3].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[4].Value = rs.Fields[4].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[5].Value = rs.Fields[5].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[6].Value = rs.Fields[7].Value;
-
-                            rs.MoveNext();
-                        }
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("No contamos con stock en Herbicidas y Fungicidas","Aviso");
-                    }
-                }
+                CargarHerFun();
             }
             else if (rdbtnSemillas.Checked)
             {
-                string sql;
-                ADODB.Recordset rs;
-                object cantfilas;
-                if (Datos.Persistencia.cn.State != 0)
-                {
-                    sql = "Select * from productos where Tipo = 'Semilla' && Stock > 0"; 
-
-                    try
-                    {
-                        rs = Datos.Persistencia.cn.Execute(sql, out cantfilas);
-                    }
-                    catch
-                    {
-                        return;
-                    }
-                    if (rs.RecordCount > 0)
-                    {
-                        while (!rs.EOF)
-                        {
-                            int rowEscribir = dataViewProductos.Rows.Count - 1;
-                            dataViewProductos.Rows.Add(1);
-
-                            dataViewProductos.Rows[rowEscribir].Cells[0].Value = rs.Fields[0].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[1].Value = rs.Fields[1].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[2].Value = rs.Fields[2].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[3].Value = rs.Fields[3].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[4].Value = rs.Fields[4].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[5].Value = rs.Fields[5].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[6].Value = rs.Fields[7].Value;
-
-                            rs.MoveNext();
-                        }
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("No contamos con stock en Semillas","Aviso");
-                    }
-                }
+                CargarSemilla();
             }
             else if (rdbtnOtros.Checked)
             {
-                string sql;
-                ADODB.Recordset rs;
-                object cantfilas;
-
-                if (Datos.Persistencia.cn.State != 0)
-                {
-                    sql = "Select * from productos where Tipo = 'Agricola' && Stock > 0";
-
-                    try
-                    {
-                        rs = Datos.Persistencia.cn.Execute(sql, out cantfilas);
-                    }
-                    catch
-                    {
-                        return;
-                    }
-                    if (rs.RecordCount > 0)
-                    {
-                        while (!rs.EOF)
-                        {
-                            int rowEscribir = dataViewProductos.Rows.Count - 1;
-                            dataViewProductos.Rows.Add(1);
-
-                            dataViewProductos.Rows[rowEscribir].Cells[0].Value = rs.Fields[0].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[1].Value = rs.Fields[1].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[2].Value = rs.Fields[2].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[3].Value = rs.Fields[3].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[4].Value = rs.Fields[4].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[5].Value = rs.Fields[5].Value;
-                            dataViewProductos.Rows[rowEscribir].Cells[6].Value = rs.Fields[7].Value;
-
-                            rs.MoveNext();
-                        }
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("No contamos con stock en productos Agricolas","Aviso");
-                    }
-                }
-            }
-
-            txtID.Enabled = true;
-            numUpDnCantidad.Enabled = true;
-            btnComprar.Enabled = true;
-            */
+                CargarAgricola();
+            }            
         }
 
         private void pbxSalir_Click(object sender, EventArgs e)
         {
-
-            Login login = new Login();
-            login.Show();
-            this.Hide(); 
-            
+            try
+            {
+                Negocios.Metodos metodos = new Negocios.Metodos();
+                metodos.Salir_Tienda();
+                this.Hide();
+            }
+            catch
+            {
+                return;
+            }
         }
 
         private void pbxMinimizar_Click(object sender, EventArgs e)
@@ -216,7 +59,104 @@ namespace Ke_Fruta.Compra
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
-            /*
+            Comprar();
+        }
+        
+        private void txtID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            txtID.MaxLength = 15;
+            if (!char.IsNumber(e.KeyChar) == true && (e.KeyChar != (char)Keys.Back))
+            {
+                e.Handled = true;
+
+            }
+        }
+        public void CargarAgricola()
+        {
+            try
+            {
+                Negocios.Productos productos = new Negocios.Productos();
+                productos.BuscarOtro();
+                if (productos.Existe == true)
+                {
+                    dataViewProductos.DataSource = productos.dt;
+                }
+                else
+                {
+                    MessageBox.Show("No disponemos de Stock en productos Agricolas", "Aviso");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+        }
+        public void CargarSemilla()
+        {
+            try
+            {
+                Negocios.Productos productos = new Negocios.Productos();
+                productos.BuscarSemilla();
+                if (productos.Existe == true)
+                {
+                    dataViewProductos.DataSource = productos.dt;
+                }
+                else
+                {
+                    MessageBox.Show("No disponemos de Stock en Semillas", "Aviso");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+        }
+        public void CargarFertilizante()
+        {
+            try
+            {
+                Negocios.Productos productos = new Negocios.Productos();
+                productos.BuscarFertilizante();
+                if (productos.Existe == true)
+                {
+                    dataViewProductos.DataSource = productos.dt;
+                }
+                else
+                {
+                    MessageBox.Show("No disponemos de Stock en Fertilizantes", "Aviso");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+        }
+        public void CargarHerFun()
+        {
+            try
+            {
+                Negocios.Productos productos = new Negocios.Productos();
+                productos.BuscarHerFun();
+                if (productos.Existe == true)
+                {
+                    dataViewProductos.DataSource = productos.dt;
+                }
+                else
+                {
+                    MessageBox.Show("No disponemos de Stock en Herbicidas y Fungicidas", "Aviso");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+        }
+        public void Comprar()
+        {
             if (numUpDnCantidad.Value == 0)
             {
                 MessageBox.Show("Seleccione un cantidad para continuar la compra", "Aviso");
@@ -231,35 +171,85 @@ namespace Ke_Fruta.Compra
             {
                 try
                 {
-                    int cantidad = Convert.ToInt32(numUpDnCantidad.Value);
-                    Negocios.Metodos.BuscarStockProducto(txtID.Text, cantidad);
-                    numUpDnCantidad.Enabled = false;
-                    txtID.Enabled = false;
-                    txtID.Text = "";
-                    btnComprar.Enabled = false;
-                    dataViewProductos.Rows.Clear();
+                    Negocios.Usuario usuario = new Negocios.Usuario();
+                    Negocios.Metodos metodos = new Negocios.Metodos();
+                    Negocios.Productos productos = new Negocios.Productos();
+                    Negocios.Compra compra = new Negocios.Compra();
+                    compra.IdProducto = txtID.Text;
+                    compra.Verificar();
+                    if(compra.Existe == true)
+                    {
+                        if(compra.Cantidad < Convert.ToInt32(numUpDnCantidad.Value))
+                        {
+                            MessageBox.Show("La cantidad que desea comprar no la poseemos. Nuestro Stock es: " + compra.Cantidad, "Aviso");
+                        }
+                        else
+                        {
+                            if (MessageBox.Show("¿Seguro que desea comprar el producto?","Confirmar",MessageBoxButtons.YesNoCancel, 
+                                MessageBoxIcon.Question)== DialogResult.Yes)
+                            {
+                                int costcompra;
+                                costcompra = compra.Precio * Convert.ToInt32(numUpDnCantidad.Value);
+                                usuario.nombre = metodos.nombre;
+                                usuario.BusquedaXNombre();
+                                compra.IdCliente = usuario.id;
+                                compra.IdProducto = txtID.Text;
+                                compra.Cantidad = Convert.ToInt32(numUpDnCantidad.Value);
+                                compra.Costo = costcompra;
+                                compra.GenerarCompra();
+                                if (compra.Concretado == true)
+                                {
+                                    productos.IdProducto = txtID.Text;
+                                    productos.Cantidad = Convert.ToInt32(numUpDnCantidad.Value);
+                                    productos.Quitar();
+                                    if(productos.Quitado == true)
+                                    {
+                                        MessageBox.Show("Compra realizada correctamente", "Aviso");
+                                        txtID.Clear();
+                                        numUpDnCantidad.Value = 0;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Hubo problemas al quitar el producto de nuestro inventario", "Aviso");
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Hubo problemas al realizar la compra", "Aviso");
+                                }
+                            }
+                            else
+                            {
+                                txtID.Clear();
+                                numUpDnCantidad.Value = 0;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("El producto que intenta comprar no esta registrado en nuestro inventario", "Aviso");
+                    }
                 }
-                catch
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Hubo problemas al concretar la venta", "Aviso");
+                    MessageBox.Show(ex.Message);
+                    return;
                 }
 
             }
-            */
-        }
-        
-        public static void Aviso(string Problema)
-        {
-            MessageBox.Show(Problema);
         }
 
-        private void txtID_KeyPress(object sender, KeyPressEventArgs e)
+        private void btnVolver_Click(object sender, EventArgs e)
         {
-            txtID.MaxLength = 15;
-            if (!char.IsNumber(e.KeyChar) == true && (e.KeyChar != (char)Keys.Back))
+            try
             {
-                e.Handled = true;
-
+                Negocios.Metodos metodos = new Negocios.Metodos();
+                metodos.Salir_Tienda();
+                this.Hide();
+            }
+            catch
+            {
+                return;
             }
         }
     }

@@ -97,10 +97,15 @@ namespace Ke_Fruta.Negocios
             get { return _EmailExiste; }
             set { _EmailExiste = value; }
         }
+        Metodos metodos = new Metodos();
         Datos.Persistencia persistencia = new Datos.Persistencia();
 
         public void verificar()
         {
+            if(persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql, sql1, sql2, sql3;
             ADODB.Recordset rs, rs1, rs2, rs3;
             object cantfilas;
@@ -112,7 +117,6 @@ namespace Ke_Fruta.Negocios
                 try
                 {
                     rs = persistencia.cn.Execute(sql, out cantfilas);
-
                 }
                 catch
                 {
@@ -169,9 +173,11 @@ namespace Ke_Fruta.Negocios
                                                 rs2.MoveNext();
                                             }
                                         }
+                                        
                                     }
 
                                 }
+                                
                             }
                             break;
                         case "E":
@@ -192,6 +198,7 @@ namespace Ke_Fruta.Negocios
                                 {
                                     _rut = Convert.ToString(rs1.Fields[1].Value);
                                 }
+                                
                             }
                             break;
                     }
@@ -226,6 +233,10 @@ namespace Ke_Fruta.Negocios
         }
         public void BuscarExitenciaNombre()
         {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql, sql1;
             object cantfilas;
             ADODB.Recordset rs, rs1;
@@ -239,11 +250,13 @@ namespace Ke_Fruta.Negocios
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
                 if (rs.RecordCount > 0)
                 {
                     _Hay = true;
+                    persistencia.cn.Close();
                 }
                 else
                 {
@@ -256,15 +269,18 @@ namespace Ke_Fruta.Negocios
                         }
                         catch
                         {
+                            persistencia.cn.Close();
                             return;
                         }
-                        if (rs1.RecordCount > 0)
+                        if(rs1.RecordCount > 0)
                         {
                             _Hay = true;
+                            persistencia.cn.Close();
                         }
                         else
                         {
                             _Hay = false;
+                            persistencia.cn.Close();
                         }
                     }
                 }
@@ -272,24 +288,30 @@ namespace Ke_Fruta.Negocios
         }
         public void BuscarExistenciaEmail()
         {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql, sql1;
             object cantfilas;
             ADODB.Recordset rs, rs1;
 
-            if (persistencia.cn.State != 0)
+            if(persistencia.cn.State != 0)
             {
-                sql = "Select * from usuario where Email ='" + _emailnuevo + "' and ID = '" + _id + "'";
+                sql = "Select * from usuario where Email ='" + _emailnuevo + "' and ID = '"+_id+"'";
                 try
                 {
                     rs = persistencia.cn.Execute(sql, out cantfilas);
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
-                if (rs.RecordCount > 0)
+                if(rs.RecordCount > 0)
                 {
                     _EmailExiste = true;
+                    persistencia.cn.Close();
                 }
                 else
                 {
@@ -302,15 +324,18 @@ namespace Ke_Fruta.Negocios
                         }
                         catch
                         {
+                            persistencia.cn.Close();
                             return;
                         }
-                        if (rs1.RecordCount > 0)
+                        if(rs1.RecordCount > 0)
                         {
                             _EmailExiste = true;
+                            persistencia.cn.Close();
                         }
                         else
                         {
                             ModificarEmail();
+                            persistencia.cn.Close();
                         }
 
                     }
@@ -320,7 +345,11 @@ namespace Ke_Fruta.Negocios
         //__________________________
         public void AltaUsuario()
         {
-            string sql, sql1, sql2, sql3, sql4, sql5, sql8;
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
+            string sql, sql1, sql2, sql3, sql4, sql8;
             object cantfilas;
             ADODB.Recordset rs;
 
@@ -332,7 +361,6 @@ namespace Ke_Fruta.Negocios
                 sql2 = "Grant select, insert, delete, update, create user, drop, grant option on *.* to '" + nombre + "'@'%'";//Permisos Administrativo
                 sql3 = "Grant insert, delete, update, select on ke_fruta.* to '" + _nombre + "'@'%'";//Permisos Productor
                 sql4 = "Grant insert, select, update on ke_fruta.* to '" + _nombre + "'@'%'";//Permisos Externos
-                sql5 = "flush privileges";
 
                 if (persistencia.cn.State != 0)
                 {
@@ -343,11 +371,13 @@ namespace Ke_Fruta.Negocios
                     }
                     catch
                     {
+                        persistencia.cn.Close();
                         return;
                     }
                     if (rs.RecordCount > 0)
                     {
                         ABMC.Aviso("Este Nombre ya se encuentra registrado");
+                        persistencia.cn.Close();
                     }
                     else
                     {
@@ -370,11 +400,12 @@ namespace Ke_Fruta.Negocios
                                         {
                                             persistencia.cn.Execute(sql2, out cantfilas);
                                         }
-
+                                        persistencia.cn.Close();
                                         AltaAdm();
                                     }
                                     catch
                                     {
+                                        persistencia.cn.Close();
                                         return;
                                     }
                                 }
@@ -384,7 +415,7 @@ namespace Ke_Fruta.Negocios
                                 {
                                     if (persistencia.cn.State != 0)
                                     {
-                                       persistencia.cn.Execute(sql, out cantfilas);
+                                        persistencia.cn.Execute(sql, out cantfilas);
                                     }
                                     if (persistencia.cn.State != 0)
                                     {
@@ -394,13 +425,14 @@ namespace Ke_Fruta.Negocios
                                     {
                                         persistencia.cn.Execute(sql3, out cantfilas);
                                     }
-
+                                    persistencia.cn.Close();
                                     AltaCli();
                                     AltaPro();
                                     ABMC.Aviso("Se agrego correctamente al Productor");
                                 }
                                 catch
                                 {
+                                    persistencia.cn.Close();
                                     return;
                                 }
                                 break;
@@ -419,22 +451,28 @@ namespace Ke_Fruta.Negocios
                                     {
                                         persistencia.cn.Execute(sql4, out cantfilas);
                                     }
-
+                                    persistencia.cn.Close();
                                     AltaCli();
                                     ABMC.Aviso("Se agrego correctamente al Cliente");
                                 }
                                 catch
                                 {
+                                    persistencia.cn.Close();
                                     return;
                                 }
                                 break;
                         }
                     }
-                }
+                }  
             }
+
         }
         public void AltaAdm()
         {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql, sql1;
             object cantfilas;
             ADODB.Recordset rs;
@@ -461,20 +499,24 @@ namespace Ke_Fruta.Negocios
                         {
                             persistencia.cn.Execute(sql1, out cantfilas);
                             ABMC.Aviso("Se agrego correctamente al Administrativo");
+                            persistencia.cn.Close();
                         }
                         catch
                         {
+                            persistencia.cn.Close();
                             return;
                         }
                     }
-
-
                 }
             }
 
         }
         public void AltaCli()
         {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql, sql1;
             object cantfilas;
             ADODB.Recordset rs;
@@ -488,6 +530,7 @@ namespace Ke_Fruta.Negocios
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
                 if (rs.RecordCount > 0)
@@ -501,20 +544,24 @@ namespace Ke_Fruta.Negocios
                         try
                         {
                             persistencia.cn.Execute(sql1, out cantfilas);
+                            persistencia.cn.Close();
                         }
                         catch
                         {
+                            persistencia.cn.Close();
                             return;
                         }
                     }
-
-
                 }
             }
 
         }
         public void AltaPro()
         {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql, sql1;
             object cantfilas;
             ADODB.Recordset rs;
@@ -528,6 +575,7 @@ namespace Ke_Fruta.Negocios
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
                 if (rs.RecordCount > 0)
@@ -541,9 +589,11 @@ namespace Ke_Fruta.Negocios
                         try
                         {
                             persistencia.cn.Execute(sql1, out cantfilas);
+                            persistencia.cn.Close();
                         }
                         catch
                         {
+                            persistencia.cn.Close();
                             return;
                         }
                     }
@@ -553,6 +603,10 @@ namespace Ke_Fruta.Negocios
         //__________________________
         public void BajaUsuarioProductor()
         {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql, sql1, sql2, sql3, sql4, sql5, sql6, sql7, sql8, sql9, sql10, sql11;
             object cantfilas;
 
@@ -621,10 +675,11 @@ namespace Ke_Fruta.Negocios
                         persistencia.cn.Execute(sql1, out cantfilas);
                     }
                     ABMC.Aviso("Baja realizada exitosamente");
-
+                    persistencia.cn.Close();
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
 
@@ -632,6 +687,10 @@ namespace Ke_Fruta.Negocios
         }
         public void BajaUsuarioCliente()
         {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql, sql1, sql2, sql6, sql7, sql11;
             object cantfilas;
 
@@ -671,16 +730,21 @@ namespace Ke_Fruta.Negocios
                         persistencia.cn.Execute(sql1, out cantfilas);
                     }
                     ABMC.Aviso("Baja realizada exitosamente");
+                    persistencia.cn.Close();
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
-
             }
         }
         public void BajaUsuarioAdministrativo()
         {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql, sql1, sql2, sql5, sql6, sql11;
             object cantfilas;
 
@@ -720,17 +784,24 @@ namespace Ke_Fruta.Negocios
                         persistencia.cn.Execute(sql1, out cantfilas);
                     }
                     ABMC.Aviso("Baja realizada exitosamente");
+                    persistencia.cn.Close();
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
 
             }
+            
         }
         //__________________________
         public void ModificarUsuario()
         {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
 
@@ -741,32 +812,44 @@ namespace Ke_Fruta.Negocios
                 try
                 {
                     persistencia.cn.Execute(sql, out cantfilas);
+                    persistencia.cn.Close();
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
             }
         }
         public void ModificarEmail()
         {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
-            if (persistencia.cn.State != 0)
+            if(persistencia.cn.State != 0)
             {
                 sql = "Update usuario set Email = '" + _emailnuevo + "' where ID = '" + _id + "'";
                 try
                 {
                     persistencia.cn.Execute(sql, out cantfilas);
+                    persistencia.cn.Close();
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
             }
         }
         public void ModificarPassword()
         {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
 
@@ -776,21 +859,25 @@ namespace Ke_Fruta.Negocios
                 try
                 {
                     persistencia.cn.Execute(sql, out cantfilas);
-
+                    persistencia.cn.Close();
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
-
             }
         }
         public void ModificarNombreUser()
         {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql, sql2, sql3, sql4;
             object cantfilas;
 
-            if (persistencia.cn.State != 0)
+            if(persistencia.cn.State != 0)
             {
                 //sql = "Update user set User = '" + _nombrenuevo + "' where Host = '%' and User ='" + _nombre + "'";
                 sql = "RENAME USER '" + _nombre + "'@'%' TO '" + _nombrenuevo + "'@'%'";
@@ -805,9 +892,12 @@ namespace Ke_Fruta.Negocios
                         {
                             persistencia.cn.Execute(sql, out cantfilas);
                             persistencia.cn.Execute(sql2, out cantfilas);
+
+                            persistencia.cn.Close();
                         }
                         catch
                         {
+                            persistencia.cn.Close();
                             return;
                         }
                         break;
@@ -816,9 +906,12 @@ namespace Ke_Fruta.Negocios
                         {
                             persistencia.cn.Execute(sql, out cantfilas);
                             persistencia.cn.Execute(sql3, out cantfilas);
+
+                            persistencia.cn.Close();
                         }
                         catch
                         {
+                            persistencia.cn.Close();
                             return;
                         }
                         break;
@@ -827,24 +920,31 @@ namespace Ke_Fruta.Negocios
                         {
                             persistencia.cn.Execute(sql, out cantfilas);
                             persistencia.cn.Execute(sql4, out cantfilas);
+
+                            persistencia.cn.Close();
                         }
                         catch
                         {
+                            persistencia.cn.Close();
                             return;
                         }
                         break;
                 }
-
+                
             }
         }
         //__________________________
         public void BusquedaXNombre()
         {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
             ADODB.Recordset rs;
 
-            if (persistencia.cn.State != 0)
+            if(persistencia.cn.State != 0)
             {
                 sql = "Select * from usuario where Nombre ='" + _nombre + "'";
 
@@ -854,16 +954,122 @@ namespace Ke_Fruta.Negocios
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
-                if (rs.RecordCount > 0)
+                if(rs.RecordCount > 0)
                 {
                     _Hay = true;
                     _id = Convert.ToString(rs.Fields[0].Value);
+                    persistencia.cn.Close();
                 }
                 else
                 {
                     _Hay = false;
+                    persistencia.cn.Close();
+                }
+            }
+        }
+        //__________________________
+        public void BuscarDatosProductor()
+        {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
+            string sql;
+            object cantfilas;
+            ADODB.Recordset rs;
+
+            if(persistencia.cn.State != 0)
+            {
+                sql = "select ID, Nombre, Email, RUT_Productor, Tipo_Cultivo " +
+                    "from productor pro inner join usuario us " +
+                    "on pro.ID_Productor = us.ID where us.Nombre = '" + metodos.nombre + "'";
+                try
+                {
+                    rs = persistencia.cn.Execute(sql, out cantfilas);
+                }
+                catch
+                {
+                    persistencia.cn.Close();
+                    return;
+                }
+                if (rs.RecordCount > 0)
+                {
+                    _id = Convert.ToString(rs.Fields[0].Value);
+                    _nombre = Convert.ToString(rs.Fields[1].Value);
+                    _email = Convert.ToString(rs.Fields[2].Value);
+                    _rut = Convert.ToString(rs.Fields[3].Value);
+                    _tipoCultivo = Convert.ToString(rs.Fields[4].Value);
+                    persistencia.cn.Close();
+                }
+            }
+
+        }
+        public void BuscarSectoresProductor()
+        {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
+            string sql;
+            object cantfilas;
+            ADODB.Recordset rs;
+
+            if(persistencia.cn.State != 0)
+            {
+                sql = "Select * from sector where ID_Productor = '" + _id + "'";
+                try
+                {
+                    rs = persistencia.cn.Execute(sql, out cantfilas);
+                }
+                catch
+                {
+                    persistencia.cn.Close();
+                    return;
+                }
+                if(rs.RecordCount > 0)
+                {
+                    while (!rs.EOF)
+                    {
+                       _sector.Add(Convert.ToString(rs.Fields[1].Value));
+                        rs.MoveNext();
+                    }
+                    persistencia.cn.Close();
+                }
+            }
+        }
+        public void BuscarTelefonosProductor()
+        {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
+            string sql;
+            object cantfilas;
+            ADODB.Recordset rs;
+
+            if (persistencia.cn.State != 0)
+            {
+                sql = "Select * from tel_usuario where ID_Usuario = '" + _id + "'";
+                try
+                {
+                    rs = persistencia.cn.Execute(sql, out cantfilas);
+                }
+                catch
+                {
+                    persistencia.cn.Close();
+                    return;
+                }
+                if (rs.RecordCount > 0)
+                {
+                    while (!rs.EOF)
+                    {
+                        _telefonos.Add(Convert.ToString(rs.Fields[1].Value));
+                        rs.MoveNext();
+                    }
+                    persistencia.cn.Close();
                 }
             }
         }

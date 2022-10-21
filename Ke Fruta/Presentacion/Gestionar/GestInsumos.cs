@@ -42,68 +42,12 @@ namespace Ke_Fruta.Gestionar
 
         private void btnMisInsumos_Click(object sender, EventArgs e)
         {
-            /*
-            dataViewMyInsumos.Rows.Clear();
-            string nom = Negocios.Metodos.nombre.ToString();
-            string sql, sql1;
-            object cantfilas;
-            ADODB.Recordset rs, rs1;
-
-
-            if (Datos.Persistencia.cn.State != 0)
-            {
-                sql = "Select * from usuario where Nombre ='" + nom + "'";
-
-                try
-                {
-                    rs = Datos.Persistencia.cn.Execute(sql, out cantfilas);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    return;
-                }
-                if (rs.RecordCount > 0)
-                {
-                    if (Datos.Persistencia.cn.State != 0)
-                    {
-                        sql1 = "Select * from insumos where ID_Productor='"+rs.Fields[0].Value+"'";
-
-                        try
-                        {
-                            rs1 = Datos.Persistencia.cn.Execute(sql1, out cantfilas);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                            return;
-                        }
-                        if(rs1.RecordCount > 0)
-                        {
-                            while (!rs1.EOF)
-                            {
-                                int rowEscribir = dataViewMyInsumos.Rows.Count - 1;
-                                dataViewMyInsumos.Rows.Add(1);
-
-                                dataViewMyInsumos.Rows[rowEscribir].Cells[0].Value = rs1.Fields[1].Value;
-                                dataViewMyInsumos.Rows[rowEscribir].Cells[1].Value = rs1.Fields[2].Value;
-                                dataViewMyInsumos.Rows[rowEscribir].Cells[2].Value = rs1.Fields[3].Value;
-                                dataViewMyInsumos.Rows[rowEscribir].Cells[3].Value = rs1.Fields[4].Value;
-                                dataViewMyInsumos.Rows[rowEscribir].Cells[4].Value = rs1.Fields[5].Value;
-                                rs1.MoveNext();
-
-                            }
-
-                        }
-                    }
-                }
-            }
-            */
+            CargarInsumos();
         }
 
         private void txtKg_KeyPress(object sender, KeyPressEventArgs e)
         {
-            txtKg.MaxLength = 2;
+            txtKg.MaxLength = 5;
             if (!char.IsNumber(e.KeyChar) == true && (e.KeyChar != (char)Keys.Back))
             {
                 e.Handled = true;
@@ -132,41 +76,8 @@ namespace Ke_Fruta.Gestionar
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            
-            if (txtNombre.Text.Equals(""))
-            {
-                MessageBox.Show("Complete el Nombre", "Aviso");
-                txtNombre.Focus();
-            }
-            else if (txtKg.Text.Equals(""))
-            {
-                MessageBox.Show("Complete el campo de KG", "Aviso");
-                txtKg.Focus();
-            }
-            else if (txtCantidad.Text.Equals(""))
-            {
-                MessageBox.Show("Complete el campo Cantidad", "Aviso");
-                txtCantidad.Focus();
-            }
-            else
-            {
-                int kg, cantidad;
-                kg = Convert.ToInt32(txtKg.Text);
-                cantidad = Convert.ToInt32(txtCantidad.Text);
-                try
-                {
-                    //Negocios.Metodos.AgregarInsumoNoExistente(txtNombre.Text, kg, cantidad);
-                    txtNombre.Clear();
-                    txtKg.Clear();
-                    txtCantidad.Clear();
-                    pnlAgrMiPro.Visible = false;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    return;
-                }
-            }
+
+            Agregar();
         }
 
         private void btnAgrMiPro_Click(object sender, EventArgs e)
@@ -185,9 +96,97 @@ namespace Ke_Fruta.Gestionar
 
         private void btnAgregarAdd_Click(object sender, EventArgs e)
         {
+            AgregarAdd();
+        }
+
+        private void btnQuitarDel_Click(object sender, EventArgs e)
+        {
+            QuitarDel();
+        }
+
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+            pnlDel.Visible = true;
+            pnlAgrMiPro.Visible = false;
+            pnlAdd.Visible = false;
+        }
+        public void CargarInsumos()
+        {
+            try
+            {
+                Negocios.Insumos insumos = new Negocios.Insumos();
+                insumos.BuscarMisInsumos();
+                if (insumos.Tengo == true)
+                {
+                    dataViewMyInsumos.DataSource = insumos.dt;
+                }
+                else
+                {
+                    MessageBox.Show("Usted no posee insumos.", "Aviso");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        public void Agregar()
+        {
+            if (txtNombre.Text.Equals(""))
+            {
+                MessageBox.Show("Complete el Nombre", "Aviso");
+                txtNombre.Focus();
+            }
+            else if (txtKg.Text.Equals(""))
+            {
+                MessageBox.Show("Complete el campo de KG", "Aviso");
+                txtKg.Focus();
+            }
+            else if (txtCantidad.Text.Equals(""))
+            {
+                MessageBox.Show("Complete el campo Cantidad", "Aviso");
+                txtCantidad.Focus();
+            }
+            else
+            {
+                try
+                {
+                    Negocios.Usuario usuario = new Negocios.Usuario();
+                    Negocios.Metodos metodos = new Negocios.Metodos();
+                    Negocios.Insumos insumos = new Negocios.Insumos();
+                    usuario.nombre = metodos.nombre;
+                    usuario.BusquedaXNombre();
+                    insumos.IdCliente = usuario.id;
+                    insumos.NombreProducto = txtNombre.Text;
+                    insumos.Kg = Convert.ToInt32(txtKg.Text);
+                    insumos.Cantidad = Convert.ToInt32(txtCantidad.Text);
+                    insumos.AgregarInsumoNoExistente();
+                    if (insumos.Realizado == true)
+                    {
+                        CargarInsumos();
+                        MessageBox.Show("Se agrego correctamente el insumo", "Aviso");
+                        txtNombre.Clear();
+                        txtKg.Clear();
+                        txtCantidad.Clear();
+                        pnlAgrMiPro.Visible = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hubo problemas al agregar el insumo", "Aviso");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+            }
+        }
+        public void AgregarAdd()
+        {
             if (txtIDAdd.Text.Equals(""))
             {
-                MessageBox.Show("Complete el ID","Aviso");
+                MessageBox.Show("Complete el ID", "Aviso");
                 txtIDAdd.Focus();
             }
             else if (txtCantAdd.Text.Equals(""))
@@ -197,24 +196,51 @@ namespace Ke_Fruta.Gestionar
             }
             else
             {
-                int cantidad;
-                cantidad = Convert.ToInt32(txtCantAdd.Text);
                 try
                 {
-                    //Negocios.Metodos.AgregarInsumoExistente(txtIDAdd.Text, cantidad);
-                    txtCantAdd.Clear();
-                    txtIDAdd.Clear();
-                    pnlAdd.Visible = false;
+                    Negocios.Metodos metodos = new Negocios.Metodos();
+                    Negocios.Usuario usuario = new Negocios.Usuario();
+                    Negocios.Insumos insumos = new Negocios.Insumos();
+                    usuario.nombre = metodos.nombre;
+                    usuario.BusquedaXNombre();
+                    insumos.IdCliente = usuario.id;
+                    insumos.IdInsumo = txtIDAdd.Text;
+                    insumos.VerificarExistencia();
+                    if (insumos.Tengo == true)
+                    {
+                        insumos.IdCliente = usuario.id;
+                        insumos.IdInsumo = txtIDAdd.Text;
+                        insumos.Cantidad = Convert.ToInt32(txtCantAdd.Text);
+                        insumos.AgregarProductoExistente();
+                        if (insumos.Realizado == true)
+                        {
+                            txtCantAdd.Clear();
+                            txtIDAdd.Clear();
+                            pnlAdd.Visible = false;
+                            MessageBox.Show("Se agrego correctamente el insumo", "Aviso");
+                            CargarInsumos();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Hubo problemas al agregar el insumo", "Aviso");
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usted no posee el producto que desea agregar.", "Aviso");
+                        txtIDAdd.Clear();
+                        txtCantAdd.Clear();
+                    }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                     return;
                 }
             }
         }
-
-        private void btnQuitarDel_Click(object sender, EventArgs e)
+        public void QuitarDel()
         {
             if (txtIDDel.Text.Equals(""))
             {
@@ -228,28 +254,87 @@ namespace Ke_Fruta.Gestionar
             }
             else
             {
-                int cantidad;
-                cantidad = Convert.ToInt32(txtCantDel.Text);
                 try
                 {
-                    //Negocios.Metodos.QuitarInsumoExistente(txtIDDel.Text, cantidad);
-                    txtCantAdd.Clear();
-                    txtIDAdd.Clear();
-                    pnlDel.Visible = false;
+                    Negocios.Metodos metodos = new Negocios.Metodos();
+                    Negocios.Usuario usuario = new Negocios.Usuario();
+                    Negocios.Insumos insumos = new Negocios.Insumos();
+                    usuario.nombre = metodos.nombre;
+                    usuario.BusquedaXNombre();
+                    insumos.IdCliente = usuario.id;
+                    insumos.IdInsumo = txtIDDel.Text;
+                    insumos.VerificarExistencia();
+                    if (insumos.Tengo == true)
+                    {
+                        if (insumos.Cantidad < Convert.ToInt32(txtCantDel.Text))
+                        {
+                            MessageBox.Show("Usted no posee la cantidad que desea quitar. Usted posee: " + insumos.Cantidad, "Aviso");
+                            txtCantDel.Focus();
+                        }
+                        else
+                        {
+                            insumos.IdCliente = usuario.id;
+                            insumos.IdInsumo = txtIDDel.Text;
+                            insumos.Cantidad = Convert.ToInt32(txtCantDel.Text);
+                            insumos.QuitarProductoExistente();
+                            if (insumos.Realizado == true)
+                            {
+                                txtCantDel.Clear();
+                                txtIDDel.Clear();
+                                pnlDel.Visible = false;
+                                MessageBox.Show("Se quito correctamente el insumo", "Aviso");
+                                CargarInsumos();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Hubo problemas al quitar el insumo", "Aviso");
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usted no posee el insumo que desea quitar", "Aviso");
+                        txtIDDel.Clear();
+                        txtCantDel.Clear();
+                        txtIDDel.Focus();
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                   MessageBox.Show(ex.Message);
                     return;
                 }
             }
         }
 
-        private void btnQuitar_Click(object sender, EventArgs e)
+        private void btnCancelarAlta_Click(object sender, EventArgs e)
         {
-            pnlDel.Visible = true;
             pnlAgrMiPro.Visible = false;
+            txtNombre.Clear();
+            txtKg.Clear();
+            txtCantidad.Clear();
+        }
+
+        private void btnCancelarQuitar_Click(object sender, EventArgs e)
+        {
+            txtIDAdd.Clear();
+            txtCantAdd.Clear();
+            pnlDel.Visible = false;
+        }
+
+        private void btnCancelarAgre_Click(object sender, EventArgs e)
+        {
+            txtIDAdd.Clear();
+            txtCantAdd.Clear();
             pnlAdd.Visible = false;
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            Productor productor = new Productor();
+            productor.Show();
+            this.Hide();
         }
     }
 }

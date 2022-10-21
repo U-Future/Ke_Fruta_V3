@@ -20,10 +20,13 @@ namespace Ke_Fruta.Negocios
 
         Datos.Persistencia persistencia = new Datos.Persistencia();
 
+
         public void BuscarUsuario()
         {
-            persistencia.AbrirConexion();
-
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             ADODB.Recordset rs;
             object cantfilas;
@@ -47,29 +50,58 @@ namespace Ke_Fruta.Negocios
                         case "A"://Administrativo
                             Administrativo administrativo = new Administrativo();
                             administrativo.Show();
-                            persistencia.cn.Close();
                             break;
                         case "I"://Productor
-                            Presentacion.SeleccioneApp seleccioneApp = new Presentacion.SeleccioneApp();
-                            seleccioneApp.Show();
-                            persistencia.cn.Close();
+                            Ke_Fruta.Productor productor = new Productor();
+                            productor.Show();
                             break;
                         case "E"://Cliente
                             Ke_Fruta.Compra.Tienda tienda = new Ke_Fruta.Compra.Tienda();
                             tienda.Show();
-                            persistencia.cn.Close();
                             break;
                     }
                 }
             }
         }                                                
-        //____________________________________________________________________________________________________________    
-        public void AbrirCon()
+        //_____________________________
+        public void Salir_Tienda()
         {
-            Datos.Persistencia persistencia = new Datos.Persistencia();
-            persistencia.AbrirConexion();
-        }        
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
+            string sql;
+            ADODB.Recordset rs;
+            object cantfilas;
 
+            if (persistencia.cn.State != 0)
+            {
+                sql = "Select * from usuario where Nombre= '" + _nombre + "'";
+                try
+                {
+                    rs = persistencia.cn.Execute(sql, out cantfilas);
+                }
+                catch
+                {
+                    return;
+                }
+                if (rs.RecordCount > 0)
+                {
+
+                    switch (rs.Fields[2].Value.ToString())
+                    {
+                        case "I"://Productor
+                            Ke_Fruta.Productor productor = new Productor();
+                            productor.Show();
+                            break;
+                        case "E"://Cliente
+                            Ke_Fruta.Login login = new Login();
+                            login.Show();
+                            break;
+                    }
+                }
+            }
+        }
     }
 }
 

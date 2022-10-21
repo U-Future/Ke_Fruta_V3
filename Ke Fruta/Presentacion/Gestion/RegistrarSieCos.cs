@@ -31,20 +31,27 @@ namespace Ke_Fruta.Gestion
             }
             else
             {
-                Negocios.Sector sector = new Negocios.Sector();
-                sector.idSec = txtBuscarSec.Text;
-                sector.BuscarSector();
+                try
+                {
+                    Negocios.Sector sector = new Negocios.Sector();
+                    sector.idSec = txtBuscarSec.Text;
+                    sector.BuscarSector();
 
-                if (sector.ExisteSector == true)
-                {
-                    txtBuscarSec.Enabled = false;
-                    btnBuscar.Enabled = false;
-                    gpboxFechas.Enabled = true;
+                    if (sector.ExisteSector == true)
+                    {
+                        txtBuscarSec.Enabled = false;
+                        btnBuscar.Enabled = false;
+                        gpboxFechas.Enabled = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("El sector no existe", "Aviso");
+                        txtBuscarSec.Focus();
+                    }
                 }
-                else
+                catch
                 {
-                    MessageBox.Show("El sector no existe", "Aviso");
-                    txtBuscarSec.Focus();
+                    return;
                 }
             }
         }
@@ -85,8 +92,8 @@ namespace Ke_Fruta.Gestion
                 tipo = "Zapallo Criollo";
             }
 
-            //try
-            //{
+            try
+            { 
                 Negocios.Sector sector = new Negocios.Sector();
                 Negocios.SiembraCosecha siembracosecha = new Negocios.SiembraCosecha();
             //sector.idSec = txtBuscarSec.Text;
@@ -130,11 +137,11 @@ namespace Ke_Fruta.Gestion
                 btnBuscar.Enabled = true;
                 txtBuscarSec.Clear();
                 txtBuscarSec.Focus();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
           
             
 

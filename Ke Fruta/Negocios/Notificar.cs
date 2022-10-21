@@ -15,11 +15,47 @@ namespace Ke_Fruta.Negocios
     internal class Notificar
     {
         protected string _idCompra;
+        protected string _email;
+        protected string _FSiembra;
+        protected string _FCosecha;
+        protected string _Nombre;
+        protected string _idSec;
+        protected string _Cultivo;
 
         public string IdCompra 
         { 
             get { return _idCompra; } 
             set { _idCompra = value; } 
+        }
+        public string Email
+        {
+            get { return _email; }
+            set { _email = value; }
+        }
+        public string FSiembra
+        {
+            get { return _FSiembra; }
+            set { _FSiembra = value; }
+        }
+        public string FCosecha
+        {
+            get { return _FCosecha; }
+            set { _FCosecha = value; }
+        }
+        public string Nombre
+        {
+            get { return _Nombre; }
+            set { _Nombre = value; }
+        }
+        public string IdSec
+        {
+            get { return _idSec; }
+            set { _idSec = value; }
+        }
+        public string Cultivo
+        {
+            get { return _Cultivo; }
+            set { _Cultivo = value; }
         }
 
         Datos.Persistencia persistencia = new Datos.Persistencia();
@@ -54,11 +90,11 @@ namespace Ke_Fruta.Negocios
                 }
 
             }
-        public static void NotificarSiembraCosecha(string email, string Siembra, string Cosecha, string Nombre, string ID_Sec)
+        public void NotificarSiembraCosecha()
         {
             string htmlString = @"<body><style> body { font-family: Arial, Helvetica, sans-serif; color: green } </style> " +
-                "<h1>Notificación Ke Fruta</h1> <p>Estimado " + Nombre + ",<br> Le notificamos que la proxima siembra y cosecha del Sector N°"+ID_Sec+ "<br>" +
-                "sera: <br> Fecha de Siembra: " + Siembra +" <br> Fecha de Cosecha: " + Cosecha + "</p><br>" +
+                "<h1>Notificación Ke Fruta</h1> <p>Estimado " + _Nombre + ".<br> Le notificamos que la proxima siembra y cosecha del Sector N°"+_idSec+ "<br>" +
+                "sera: <br> Fecha de Siembra: " + _FSiembra +" <br> Fecha de Cosecha: " + _FCosecha + "<br>Cultivo: "+_Cultivo+"</p><br>" +
                 "<p>Saludos Cordiales,<br>Ke Fruta cooperativa agraria.</p></body>";
 
             try
@@ -66,7 +102,7 @@ namespace Ke_Fruta.Negocios
                 MailMessage message = new MailMessage();
                 SmtpClient smtp = new SmtpClient();
                 message.From = new MailAddress("kefruta14@gmail.com");
-                message.To.Add(new MailAddress(email));
+                message.To.Add(new MailAddress(_email));
                 message.Subject = "Ke Fruta: Aviso";
                 message.IsBodyHtml = true;
                 message.Body = htmlString;

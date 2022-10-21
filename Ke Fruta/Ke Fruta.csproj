@@ -110,7 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Negocios\Compra.cs" />
-    <Compile Include="Negocios\ConstructorDatos.cs" />
+    <Compile Include="Negocios\Gestiona.cs" />
     <Compile Include="Negocios\Insumos.cs" />
     <Compile Include="Negocios\Metodos.cs" />
     <Compile Include="Negocios\Notificar.cs" />
@@ -194,12 +194,6 @@
     <Compile Include="Presentacion\ProductorActividades\Vender.Designer.cs">
       <DependentUpon>Vender.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\SeleccioneApp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\SeleccioneApp.Designer.cs">
-      <DependentUpon>SeleccioneApp.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Presentacion\Venta\Ventas.cs">
@@ -243,9 +237,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ProductorActividades\Vender.resx">
       <DependentUpon>Vender.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\SeleccioneApp.resx">
-      <DependentUpon>SeleccioneApp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

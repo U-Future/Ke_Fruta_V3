@@ -35,9 +35,6 @@ namespace Ke_Fruta.Gestion
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            //dataViewConSieCos.Rows.Clear();
-            //dataViewConSieCos.Columns.Clear();
-
             dataViewConSieCos.DataSource = null;
 
             if (rdbtnSector.Checked == true)
@@ -50,18 +47,34 @@ namespace Ke_Fruta.Gestion
                 }
                 else
                 {
-                    Negocios.SiembraCosecha siembraCosecha = new Negocios.SiembraCosecha();
-                    siembraCosecha.IdSec = txtBuscar.Text;
-                    siembraCosecha.ConsultarSiembraID();
-                    if (siembraCosecha.Existe == true)
+                    try
                     {
-                        dataViewConSieCos.DataSource = siembraCosecha.dt;
-                        txtBuscar.Clear();
+                        Negocios.Metodos metodos = new Negocios.Metodos();
+                        Negocios.Gestiona gestiona = new Negocios.Gestiona();
+                        Negocios.Usuario usuario = new Negocios.Usuario();
+                        Negocios.SiembraCosecha siembraCosecha = new Negocios.SiembraCosecha();
+                        siembraCosecha.IdSec = txtBuscar.Text;
+                        siembraCosecha.ConsultarSiembraID();
+                        if (siembraCosecha.Existe == true)
+                        {
+                            dataViewConSieCos.DataSource = siembraCosecha.dt;
+                            usuario.nombre = metodos.nombre;
+                            usuario.BusquedaXNombre();
+                            gestiona.IdAdm = Convert.ToInt32(usuario.id);
+                            gestiona.IdPro = Convert.ToInt32(siembraCosecha.IdPro);
+                            gestiona.IdSec = Convert.ToString(txtBuscar.Text);
+                            gestiona.RegistrarGestion();
+                            txtBuscar.Clear();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontro una siembra ni cosecha para este Sector", "Aviso");
+                            txtBuscar.Focus();
+                        }
                     }
-                    else
+                    catch
                     {
-                        MessageBox.Show("No se encontro una siembra ni cosecha para este Sector", "Aviso");
-                        txtBuscar.Focus();
+                        return;
                     }
                 }
             }
@@ -74,20 +87,26 @@ namespace Ke_Fruta.Gestion
                 }
                 else
                 {
-                    Negocios.SiembraCosecha siembraCosecha = new Negocios.SiembraCosecha();
-                    siembraCosecha.IdPro = txtBuscar.Text;
-                    siembraCosecha.ConsultarSiembraIDPro();
-                    if (siembraCosecha.Existe == true)
+                    try
                     {
-                        dataViewConSieCos.DataSource = siembraCosecha.dt;
-                        txtBuscar.Clear();
+                        Negocios.SiembraCosecha siembraCosecha = new Negocios.SiembraCosecha();
+                        siembraCosecha.IdPro = txtBuscar.Text;
+                        siembraCosecha.ConsultarSiembraIDPro();
+                        if (siembraCosecha.Existe == true)
+                        {
+                            dataViewConSieCos.DataSource = siembraCosecha.dt;
+                            txtBuscar.Clear();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No exite ninguna siembra ni cosecha para este usuario", "Aviso");
+                            txtBuscar.Focus();
+                        }
                     }
-                    else
+                    catch
                     {
-                        MessageBox.Show("No exite ninguna siembra ni cosecha para este usuario", "Aviso");
-                        txtBuscar.Focus();
+                        return;
                     }
-
                 }
             }
             

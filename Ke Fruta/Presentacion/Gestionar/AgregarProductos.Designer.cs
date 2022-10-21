@@ -349,7 +349,7 @@
             this.gpboxAgregar.Controls.Add(this.btnDone);
             this.gpboxAgregar.Controls.Add(this.numUpDownCantidad);
             this.gpboxAgregar.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpboxAgregar.Location = new System.Drawing.Point(433, 360);
+            this.gpboxAgregar.Location = new System.Drawing.Point(811, 380);
             this.gpboxAgregar.Name = "gpboxAgregar";
             this.gpboxAgregar.Size = new System.Drawing.Size(295, 244);
             this.gpboxAgregar.TabIndex = 329;

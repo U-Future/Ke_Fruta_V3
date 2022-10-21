@@ -29,14 +29,13 @@ namespace Ke_Fruta
             Login login = new Login();
             login.Show();
             this.Hide();
-            //this.Dispose();
-            //this.Visible = false;
         }
       
 
         private void tiendaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Gestionar.GestInsumos gestInsumos = new Gestionar.GestInsumos();
+            gestInsumos.CargarInsumos();
             gestInsumos.Show();
             this.Hide();
         }
@@ -44,6 +43,7 @@ namespace Ke_Fruta
         private void misDatosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ProductorPersonas.MisDatos misDatos = new ProductorPersonas.MisDatos();
+            misDatos.CargarMisDatos();
             misDatos.Show();
             this.Hide();
 
@@ -59,7 +59,15 @@ namespace Ke_Fruta
         private void venderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Presentacion.ProductorActividades.Vender vender = new Presentacion.ProductorActividades.Vender();
+            vender.CargarMisInsumos();
             vender.Show();
+            this.Hide();
+        }
+
+        private void tiendaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Ke_Fruta.Compra.Tienda tienda = new Compra.Tienda();
+            tienda.Show();
             this.Hide();
         }
     }

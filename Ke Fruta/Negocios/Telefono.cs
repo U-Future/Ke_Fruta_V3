@@ -32,7 +32,10 @@ namespace Ke_Fruta.Negocios
 
         public void AgregarTelefono()
         {
-            persistencia.AbrirConexion();
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
 
@@ -55,7 +58,10 @@ namespace Ke_Fruta.Negocios
         }
         public void EliminarTelefono()
         {
-            persistencia.AbrirConexion();
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
 
@@ -77,7 +83,10 @@ namespace Ke_Fruta.Negocios
         }
         public void BuscarTelefono()
         {
-            persistencia.AbrirConexion();
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
             ADODB.Recordset rs;

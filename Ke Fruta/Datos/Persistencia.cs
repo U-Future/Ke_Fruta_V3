@@ -29,14 +29,15 @@ namespace Ke_Fruta.Datos
 
         public void AbrirConexion()
         {
-            //try
-            //{
+            try
+            {
                 cn.Open("odbc_kefruta", usuario, password); 
-            //}
-            //catch (Exception ex)
-            //{
-            //    return;
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
 
             cn.CursorLocation = ADODB.CursorLocationEnum.adUseClient;
         }

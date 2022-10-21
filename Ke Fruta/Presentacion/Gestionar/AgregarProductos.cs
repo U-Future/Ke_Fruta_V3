@@ -146,6 +146,11 @@ namespace Ke_Fruta.Presentacion.Gestionar
                         numUpDownKG.Value = 0;
                         cboxTipo.SelectedIndex = 0;
                         gpboxAgregarProducto.Visible = false;
+                        btnBajaProducto.Enabled = false;
+                        btnListarTodo.Enabled = true;
+                        btnBuscar.Enabled = true;
+                        btnAltaProducto.Enabled = true;
+                        txtID.Enabled = true;
                     }
                     else
                     {
@@ -174,6 +179,13 @@ namespace Ke_Fruta.Presentacion.Gestionar
                     {
                         MessageBox.Show("Se agrego correctamente el producto.", "Aviso");
                         dataViewProductos.DataSource = null;
+                        gpboxAgregar.Visible = false;
+                        btnBajaProducto.Enabled = false;
+                        btnListarTodo.Enabled = true;
+                        btnBuscar.Enabled = true;
+                        btnAltaProducto.Enabled = true;
+                        txtID.Enabled = true;
+                        txtID.Clear();
                     }
                     else
                     {

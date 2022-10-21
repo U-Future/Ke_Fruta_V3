@@ -12,7 +12,9 @@ namespace Ke_Fruta.Negocios
         protected string _idCompra;
         protected string _idCliente;
         protected string _idProducto;
+        protected string _NombreProducto;
         protected int _Cantidad;
+        protected int _Precio;
         protected int _Costo;
         protected int _KG;
         protected string _fechaCompra;
@@ -37,10 +39,20 @@ namespace Ke_Fruta.Negocios
             get { return _idProducto; }
             set { _idProducto = value; }
         }
+        public string NombreProducto
+        {
+            get { return _NombreProducto; }
+            set { _NombreProducto = value; }
+        }
         public int Cantidad
         {
             get { return _Cantidad; }
             set { _Cantidad = value; }
+        }
+        public int Precio
+        {
+            get { return _Precio; }
+            set { _Precio = value; }
         }
         public int Costo
         {
@@ -86,7 +98,10 @@ namespace Ke_Fruta.Negocios
 
         public void CargarTableCompra()
         {
-            persistencia.AbrirConexion();
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
             ADODB.Recordset rs;
@@ -101,6 +116,7 @@ namespace Ke_Fruta.Negocios
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
                 if(rs.RecordCount > 0)
@@ -127,16 +143,22 @@ namespace Ke_Fruta.Negocios
                     _idCliente = Convert.ToString(rs.Fields[1].Value);
                     _idProducto = Convert.ToString(rs.Fields[2].Value);
                     _Cantidad = Convert.ToInt32(rs.Fields[3].Value);
+
+                    persistencia.cn.Close();
                 }
                 else
                 {
                     _Existe = false;
+                    persistencia.cn.Close();
                 }
             }
         }
         public void CargarTablePendientes()
         {
-            persistencia.AbrirConexion();
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
             ADODB.Recordset rs;
@@ -151,6 +173,7 @@ namespace Ke_Fruta.Negocios
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
                 if(rs.RecordCount > 0)
@@ -176,17 +199,22 @@ namespace Ke_Fruta.Negocios
                         _dt.Rows.Add(row);
                         rs.MoveNext();
                     }
+                    persistencia.cn.Close();
                 }
                 else
                 {
                     _Existe = false;
+                    persistencia.cn.Close();
                 }
             }
         }
         //___________________________
         public void ConcretarCompra()
         {
-            persistencia.AbrirConexion();
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
 
@@ -198,17 +226,22 @@ namespace Ke_Fruta.Negocios
                 {
                     persistencia.cn.Execute(sql, out cantfilas);
                     _Concretado = true;
+                    persistencia.cn.Close();
                 }
                 catch
                 {
                     _Concretado = false;
+                    persistencia.cn.Close();
                     return;
                 }
             }
         }
         public void BuscarDatosCliente()
         {
-            persistencia.AbrirConexion();
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql;
             object cantfilas;
             ADODB.Recordset rs;
@@ -223,6 +256,7 @@ namespace Ke_Fruta.Negocios
                 }
                 catch
                 {
+                    persistencia.cn.Close();
                     return;
                 }
                 if (rs.RecordCount > 0)
@@ -230,6 +264,67 @@ namespace Ke_Fruta.Negocios
                     _idCliente = Convert.ToString(rs.Fields[0].Value);
                     _NombreCliente = Convert.ToString(rs.Fields[1].Value);
                     _TipoCliente = Convert.ToString(rs.Fields[2].Value);
+                    persistencia.cn.Close();
+                }
+            }
+        }
+        //___________________________
+        public void GenerarCompra()
+        {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
+            string sql;
+            object cantfilas;
+
+            sql = "Insert into compra(ID_Cliente, ID_Producto, Cantidad, Costo, Estado) values " +
+                "('" + _idCliente + "','" + _idProducto + "','" + _Cantidad + "','" + _Costo + "','Pendiente')";
+            try
+            {
+                persistencia.cn.Execute(sql, out cantfilas);
+                _Concretado = true;
+                persistencia.cn.Close();
+            }
+            catch
+            {
+                _Concretado = false;
+                persistencia.cn.Close();
+                return;
+            }
+        }
+        public void Verificar()
+        {
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
+            string sql;
+            object cantfilas;
+            ADODB.Recordset rs;
+            if(persistencia.cn.State != 0)
+            {
+                sql = "Select * from productos where ID_Producto = '" + _idProducto + "'";
+                try
+                {
+                    rs = persistencia.cn.Execute(sql, out cantfilas);
+                }
+                catch
+                {
+                    persistencia.cn.Close();
+                    return;
+                }
+                if (rs.RecordCount > 0)
+                {
+                    _Existe = true;
+                    _idProducto = Convert.ToString(rs.Fields[0].Value);
+                    _NombreProducto = rs.Fields[1].Value;
+                    _Precio = Convert.ToInt32(rs.Fields[4].Value);
+                    _Cantidad = Convert.ToInt32(rs.Fields[7].Value);
+                }
+                else
+                {
+                    _Existe = false;
                 }
             }
         }

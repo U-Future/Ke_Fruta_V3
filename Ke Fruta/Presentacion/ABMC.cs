@@ -118,11 +118,11 @@ namespace Ke_Fruta
                         btnCancelar.Enabled = false;
                         pnlAlta.Visible = false;
                         pnlModificar.Visible = false;
-                    }
+                    }                  
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Aviso");
+                    MessageBox.Show(ex.Message,"Aviso");
                     return;
                 }
             }
@@ -203,9 +203,6 @@ namespace Ke_Fruta
                     }
                     else
                     {
-
-
-
                         if (rdbtnAdministrativo.Checked == true)
                         {
                             usuario.tipo = "A";
@@ -241,9 +238,8 @@ namespace Ke_Fruta
                         txtRUTAlta.Clear();
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
-                    MessageBox.Show(ex.Message);
                     return;
                 }
             }
@@ -527,7 +523,6 @@ namespace Ke_Fruta
                     {
                         Negocios.Usuario usuario = new Negocios.Usuario();
                         Negocios.Metodos metodos = new Negocios.Metodos();
-                        metodos.AbrirCon();
                         usuario.id = txtIDVerificar.Text;
                         usuario.passnueva = txtPassNueva.Text;
                         usuario.verificar();
@@ -540,7 +535,7 @@ namespace Ke_Fruta
                     }
                     else
                     {
-                        MessageBox.Show("Las contrase;as no coinciden", "Aviso");
+                        MessageBox.Show("Las contraseñas no coinciden", "Aviso");
                     }
                 }
                 catch (Exception ex)
@@ -756,16 +751,11 @@ namespace Ke_Fruta
             }
         }
 
-        private void pbxSalir_Click(object sender, EventArgs e)
+        private void btnVolver_Click(object sender, EventArgs e)
         {
             Administrativo administrativo = new Administrativo();
             administrativo.Show();
             this.Hide();
-        }
-
-        private void pbxMinimizar_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

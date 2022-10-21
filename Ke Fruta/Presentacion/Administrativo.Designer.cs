@@ -49,20 +49,21 @@
             this.lblBienvenido.BackColor = System.Drawing.Color.Transparent;
             this.lblBienvenido.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblBienvenido.Font = new System.Drawing.Font("Century Gothic", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBienvenido.Location = new System.Drawing.Point(0, 38);
+            this.lblBienvenido.Location = new System.Drawing.Point(0, 40);
             this.lblBienvenido.Name = "lblBienvenido";
             this.lblBienvenido.Size = new System.Drawing.Size(800, 107);
             this.lblBienvenido.TabIndex = 12;
-            this.lblBienvenido.Text = "Bienvenido Administrativo";
+            this.lblBienvenido.Text = "BIENVENIDO";
             this.lblBienvenido.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbxImg
             // 
+            this.pbxImg.BackColor = System.Drawing.Color.White;
             this.pbxImg.Image = ((System.Drawing.Image)(resources.GetObject("pbxImg.Image")));
-            this.pbxImg.Location = new System.Drawing.Point(294, 220);
+            this.pbxImg.Location = new System.Drawing.Point(266, 193);
             this.pbxImg.Name = "pbxImg";
-            this.pbxImg.Size = new System.Drawing.Size(200, 200);
-            this.pbxImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pbxImg.Size = new System.Drawing.Size(236, 235);
+            this.pbxImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxImg.TabIndex = 13;
             this.pbxImg.TabStop = false;
             // 
@@ -74,7 +75,7 @@
             this.menuToolStripMenuItem});
             this.menuAdministrativo.Location = new System.Drawing.Point(0, 0);
             this.menuAdministrativo.Name = "menuAdministrativo";
-            this.menuAdministrativo.Size = new System.Drawing.Size(800, 38);
+            this.menuAdministrativo.Size = new System.Drawing.Size(800, 40);
             this.menuAdministrativo.TabIndex = 14;
             this.menuAdministrativo.Text = "menuStrip1";
             // 
@@ -152,7 +153,7 @@
             this.Controls.Add(this.lblBienvenido);
             this.Controls.Add(this.menuAdministrativo);
             this.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuAdministrativo;
             this.Name = "Administrativo";
