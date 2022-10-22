@@ -17,55 +17,6 @@ namespace Ke_Fruta.Presentacion.ProductorActividades
         {
             InitializeComponent();
         }
-
-        private void btnCargarPro_Click(object sender, EventArgs e)
-        {
-            /*
-            Negocios.Metodos.BuscoDatosProductor();
-            btnCargarPro.Enabled = false;
-
-            string sql;
-            object cantfilas;
-            ADODB.Recordset rs;
-
-            if (Datos.Persistencia.cn.State != 0)
-            {
-                sql = "Select * from insumos where ID_Productor ='"+Negocios.Metodos.id+"' && Tipo = 'Agricola' && Cantidad > 0";
-
-                try
-                {
-                    rs = Datos.Persistencia.cn.Execute(sql, out cantfilas);
-                }
-                catch
-                {
-                    return;
-                }
-                if (rs.RecordCount > 0)
-                {
-                    while (!rs.EOF)
-                    {
-                        int rowEscribir = dataViewMisProductos.Rows.Count - 1;
-                        dataViewMisProductos.Rows.Add(1);
-
-                        dataViewMisProductos.Rows[rowEscribir].Cells[0].Value = rs.Fields[1].Value;
-                        dataViewMisProductos.Rows[rowEscribir].Cells[1].Value = rs.Fields[2].Value;
-                        dataViewMisProductos.Rows[rowEscribir].Cells[2].Value = rs.Fields[3].Value;
-                        dataViewMisProductos.Rows[rowEscribir].Cells[3].Value = rs.Fields[4].Value;
-                        dataViewMisProductos.Rows[rowEscribir].Cells[4].Value = rs.Fields[5].Value;
-                        rs.MoveNext();
-                    }
-                    txtID.Enabled = true;
-                    txtCantidad.Enabled = true;
-                    txtPrecio.Enabled = true;
-                }
-                else
-                {
-                    MessageBox.Show("Usted no tiene productos agricolas para vender","Aviso");
-                }
-            }
-            */
-        }
-
         private void txtID_KeyPress(object sender, KeyPressEventArgs e)
         {
             txtID.MaxLength = 15;
@@ -75,7 +26,6 @@ namespace Ke_Fruta.Presentacion.ProductorActividades
 
             }
         }
-
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             txtCantidad.MaxLength = 10;
@@ -85,20 +35,22 @@ namespace Ke_Fruta.Presentacion.ProductorActividades
 
             }
         }
-
         private void btnVender_Click(object sender, EventArgs e)
         {
             if (txtID.Text.Equals(""))
             {
-
+                MessageBox.Show("Complete la ID", "Aviso");
+                txtID.Focus();
             }
             else if (txtCantidad.Text.Equals(""))
             {
-
+                MessageBox.Show("Complete la cantidad a vender", "Aviso");
+                txtCantidad.Focus();
             }
             else if (txtPrecio.Text.Equals(""))
             {
-
+                MessageBox.Show("Complete el campo precio", "Aviso");
+                txtPrecio.Focus();
             }
             else
             {
@@ -115,102 +67,105 @@ namespace Ke_Fruta.Presentacion.ProductorActividades
                     insumos.IdCliente = usuario.id;
                     insumos.IdInsumo = txtID.Text;
                     insumos.BuscarExistenciaInsumo();
-                if (insumos.Cantidad < Convert.ToInt32(txtCantidad.Text))
-                {
-                    MessageBox.Show("No posee la cantidad que desea vender, usted posee: "+insumos.Cantidad, "Aviso");
-                    txtCantidad.Focus();
-                }
-                else
-                {
-                    if (insumos.Tengo == true)
+                    if (insumos.Cantidad < Convert.ToInt32(txtCantidad.Text))
                     {
-                        dataViewMisProductos.DataSource = insumos.dt;
-                        if (MessageBox.Show("¿Esta seguro que desea vender este producto?", "Confirmacion",
-                            MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        MessageBox.Show("No posee la cantidad que desea vender, usted posee: " + insumos.Cantidad, "Aviso");
+                        txtCantidad.Focus();
+                    }
+                    else
+                    {
+                        if (insumos.Tengo == true)
                         {
-                            vende.IdProductor = usuario.id;
-                            vende.IdInsumo = txtID.Text;
-                            vende.Nombre = insumos.NombreProducto;
-                            vende.Cantidad = txtCantidad.Text;
-                            vende.Precio = txtPrecio.Text;
-                            vende.Vender();
-                            if (vende.Realizado == true)
+                            dataViewMisProductos.DataSource = insumos.dt;
+                            if (MessageBox.Show("¿Esta seguro que desea vender este producto?", "Confirmacion",
+                                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                                insumos.IdCliente = usuario.id;
-                                insumos.IdInsumo = txtID.Text;
-                                insumos.Cantidad = Convert.ToInt32(txtCantidad.Text);
-                                insumos.EliminarInsumo();
-                                if (insumos.Realizado == true)
+                                vende.IdProductor = usuario.id;
+                                vende.IdInsumo = txtID.Text;
+                                vende.Nombre = insumos.NombreProducto;
+                                vende.Cantidad = txtCantidad.Text;
+                                vende.Precio = txtPrecio.Text;
+                                vende.Vender();
+                                if (vende.Realizado == true)
                                 {
-                                    productos.Nombre = insumos.NombreProducto;
-                                    productos.VerificoInsumoProductor();
-                                    if (productos.Existe)
+                                    insumos.IdCliente = usuario.id;
+                                    insumos.IdInsumo = txtID.Text;
+                                    insumos.Cantidad = Convert.ToInt32(txtCantidad.Text);
+                                    insumos.EliminarInsumo();
+                                    if (insumos.Realizado == true)
                                     {
-                                        productos.Cantidad = Convert.ToInt32(txtCantidad.Text);
-                                        productos.Agregar();
-                                        if (productos.Agregado == true)
+                                        productos.Nombre = insumos.NombreProducto;
+                                        vende.IdInsumo = txtID.Text;
+                                        vende.Nombre = insumos.NombreProducto;
+                                        vende.Cantidad = txtCantidad.Text;
+                                        productos.VerificoInsumoProductor();
+                                        if (productos.Existe)
                                         {
-                                            MessageBox.Show("La venta se realizo exitosamenete 1", "Aviso");
-                                            txtCantidad.Clear();
-                                            txtID.Clear();
-                                            txtPrecio.Clear();
-                                            CargarMisInsumos();
+                                            productos.Cantidad = Convert.ToInt32(txtCantidad.Text);
+                                            productos.Agregar();
+                                            if (productos.Agregado == true)
+                                            {
+                                                MessageBox.Show("La venta se realizo exitosamenete", "Aviso");
+                                                txtCantidad.Clear();
+                                                txtID.Clear();
+                                                txtPrecio.Clear();
+                                                CargarMisInsumos();
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Hubo un problema al agregar el producto a la BD de la cooperativa", "Aviso");
+                                            }
                                         }
                                         else
                                         {
-                                            MessageBox.Show("Hubo problemas agregar");
+                                            productos.Cantidad = Convert.ToInt32(txtCantidad.Text);
+                                            productos.Precio = Convert.ToInt32(txtPrecio.Text);
+                                            productos.KG = insumos.Kg;
+                                            productos.Nombre = insumos.NombreProducto;
+                                            productos.ComprarProductoNoExistente();
+                                            if (productos.Registrado == true)
+                                            {
+                                                MessageBox.Show("La venta se realizo exitosamenete", "Aviso");
+                                                txtCantidad.Clear();
+                                                txtID.Clear();
+                                                txtPrecio.Clear();
+                                                CargarMisInsumos();
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Hubo un problema al agregar el producto a la BD de la cooperativa", "Aviso");
+                                            }
                                         }
                                     }
                                     else
                                     {
-                                        productos.Cantidad = Convert.ToInt32(txtCantidad.Text);
-                                        productos.Precio = Convert.ToInt32(txtPrecio.Text);
-                                        productos.KG = insumos.Kg;
-                                        productos.Nombre = insumos.NombreProducto;
-                                        productos.ComprarProductoNoExistente();
-                                        if (productos.Registrado == true)
-                                        {
-                                            MessageBox.Show("La venta se realizo exitosamenete 2", "Aviso");
-                                            txtCantidad.Clear();
-                                            txtID.Clear();
-                                            txtPrecio.Clear();
-                                            CargarMisInsumos();
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show("Hubo problemas");
-                                        }
+                                        MessageBox.Show("Hubo un problema al quitar el insumo de su inventario", "Aviso");
                                     }
                                 }
                                 else
                                 {
-
+                                    MessageBox.Show("Hubo un problema al realizar la venta", "Aviso");
                                 }
                             }
                             else
                             {
-                                MessageBox.Show("Chau");
+                                MessageBox.Show("Compra Cancelada", "Aviso");
+                                txtID.Clear();
+                                txtCantidad.Clear();
+                                txtPrecio.Clear();
+                                CargarMisInsumos();
                             }
+
                         }
                         else
                         {
-                            MessageBox.Show("Compra Cancelada", "Aviso");
-                            txtID.Clear();
-                            txtCantidad.Clear();
-                            txtPrecio.Clear();
-                            CargarMisInsumos();
+
                         }
-
                     }
-                    else
-                    {
-
-                    }
-                }
                 //}
                 //catch (Exception ex)
                 //{
-                //    MessageBox.Show(ex.Message);
+                 //   MessageBox.Show(ex.Message);
                 //    return;
                 //}
             }

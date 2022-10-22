@@ -337,7 +337,7 @@ namespace Ke_Fruta.Negocios
                 if (rs.RecordCount > 0)
                 {
                     _Tengo = true;
-                    _Cantidad = Convert.ToInt32(rs.Fields[4].Value);
+                    _Cantidad = Convert.ToInt32(rs.Fields[5].Value);
                     persistencia.cn.Close();
                 }
                 else

@@ -65,20 +65,20 @@ namespace Ke_Fruta.Negocios
 
             if(persistencia.cn.State != 0)
             {
-                sql = "Insert into vende(ID_Productor, ID_Producto, Nombre, Cantidad, Costo) values" +
+                sql = "Insert into vende(ID_Productor, ID_Insumo, Nombre, Cantidad, Costo) values" +
                     "('" + _IdProductor + "','" + _IdInsumo + "', '" + _Nombre + "', '" + _Cantidad + "','" + _Precio + "')";
-                //try
-                //{
+                try
+                {
                     persistencia.cn.Execute(sql, out cantfilas);
                     _Realizado = true;
                     persistencia.cn.Close();
-                //}
-                //catch
-                //{
-                //    _Realizado = false;
-                //    persistencia.cn.Close();
-                //    return;
-                //}
+                }
+                catch
+                {
+                    _Realizado = false;
+                    persistencia.cn.Close();
+                    return;
+                }
             }
         }
     }
