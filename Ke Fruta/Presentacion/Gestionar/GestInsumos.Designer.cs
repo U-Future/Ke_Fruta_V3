@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestInsumos));
             this.pnlOpciones = new System.Windows.Forms.Panel();
+            this.btnVolver = new System.Windows.Forms.Button();
+            this.pbxLogo = new System.Windows.Forms.PictureBox();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.btnAddExistente = new System.Windows.Forms.Button();
             this.btnAgrMiPro = new System.Windows.Forms.Button();
@@ -58,14 +60,12 @@
             this.lblCantDel = new System.Windows.Forms.Label();
             this.txtIDDel = new System.Windows.Forms.TextBox();
             this.lblIDDel = new System.Windows.Forms.Label();
-            this.pbxLogo = new System.Windows.Forms.PictureBox();
-            this.btnVolver = new System.Windows.Forms.Button();
             this.pnlOpciones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataViewMyInsumos)).BeginInit();
             this.pnlAgrMiPro.SuspendLayout();
             this.pnlAdd.SuspendLayout();
             this.pnlDel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlOpciones
@@ -83,11 +83,34 @@
             this.pnlOpciones.Size = new System.Drawing.Size(234, 616);
             this.pnlOpciones.TabIndex = 313;
             // 
+            // btnVolver
+            // 
+            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVolver.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVolver.Location = new System.Drawing.Point(-1, 555);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(234, 38);
+            this.btnVolver.TabIndex = 74;
+            this.btnVolver.Text = "VOLVER";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
+            // pbxLogo
+            // 
+            this.pbxLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbxLogo.Image")));
+            this.pbxLogo.Location = new System.Drawing.Point(-1, -2);
+            this.pbxLogo.Name = "pbxLogo";
+            this.pbxLogo.Size = new System.Drawing.Size(234, 225);
+            this.pbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxLogo.TabIndex = 73;
+            this.pbxLogo.TabStop = false;
+            // 
             // btnQuitar
             // 
             this.btnQuitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuitar.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQuitar.Location = new System.Drawing.Point(-1, 351);
+            this.btnQuitar.Location = new System.Drawing.Point(-1, 380);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(234, 38);
             this.btnQuitar.TabIndex = 72;
@@ -99,7 +122,7 @@
             // 
             this.btnAddExistente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddExistente.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddExistente.Location = new System.Drawing.Point(-1, 307);
+            this.btnAddExistente.Location = new System.Drawing.Point(-1, 336);
             this.btnAddExistente.Name = "btnAddExistente";
             this.btnAddExistente.Size = new System.Drawing.Size(234, 38);
             this.btnAddExistente.TabIndex = 71;
@@ -111,7 +134,7 @@
             // 
             this.btnAgrMiPro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgrMiPro.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgrMiPro.Location = new System.Drawing.Point(-1, 263);
+            this.btnAgrMiPro.Location = new System.Drawing.Point(-1, 292);
             this.btnAgrMiPro.Name = "btnAgrMiPro";
             this.btnAgrMiPro.Size = new System.Drawing.Size(234, 38);
             this.btnAgrMiPro.TabIndex = 70;
@@ -197,7 +220,7 @@
             // 
             // txtCantidad
             // 
-            this.txtCantidad.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtCantidad.BackColor = System.Drawing.Color.White;
             this.txtCantidad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCantidad.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCantidad.Location = new System.Drawing.Point(55, 233);
@@ -209,7 +232,7 @@
             // 
             // txtKg
             // 
-            this.txtKg.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtKg.BackColor = System.Drawing.Color.White;
             this.txtKg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtKg.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtKg.Location = new System.Drawing.Point(55, 172);
@@ -231,7 +254,7 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtNombre.BackColor = System.Drawing.Color.White;
             this.txtNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNombre.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombre.Location = new System.Drawing.Point(55, 111);
@@ -260,7 +283,7 @@
             this.pnlAdd.Controls.Add(this.lblCantAdd);
             this.pnlAdd.Controls.Add(this.txtIDAdd);
             this.pnlAdd.Controls.Add(this.lblIDAdd);
-            this.pnlAdd.Location = new System.Drawing.Point(275, 346);
+            this.pnlAdd.Location = new System.Drawing.Point(459, 335);
             this.pnlAdd.Name = "pnlAdd";
             this.pnlAdd.Size = new System.Drawing.Size(221, 227);
             this.pnlAdd.TabIndex = 316;
@@ -292,7 +315,7 @@
             // 
             // txtCantAdd
             // 
-            this.txtCantAdd.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtCantAdd.BackColor = System.Drawing.Color.White;
             this.txtCantAdd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCantAdd.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCantAdd.Location = new System.Drawing.Point(7, 95);
@@ -313,7 +336,7 @@
             // 
             // txtIDAdd
             // 
-            this.txtIDAdd.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtIDAdd.BackColor = System.Drawing.Color.White;
             this.txtIDAdd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtIDAdd.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIDAdd.Location = new System.Drawing.Point(7, 34);
@@ -341,7 +364,7 @@
             this.pnlDel.Controls.Add(this.lblCantDel);
             this.pnlDel.Controls.Add(this.txtIDDel);
             this.pnlDel.Controls.Add(this.lblIDDel);
-            this.pnlDel.Location = new System.Drawing.Point(835, 346);
+            this.pnlDel.Location = new System.Drawing.Point(438, 335);
             this.pnlDel.Name = "pnlDel";
             this.pnlDel.Size = new System.Drawing.Size(221, 227);
             this.pnlDel.TabIndex = 317;
@@ -373,7 +396,7 @@
             // 
             // txtCantDel
             // 
-            this.txtCantDel.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtCantDel.BackColor = System.Drawing.Color.White;
             this.txtCantDel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCantDel.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCantDel.Location = new System.Drawing.Point(7, 95);
@@ -394,7 +417,7 @@
             // 
             // txtIDDel
             // 
-            this.txtIDDel.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtIDDel.BackColor = System.Drawing.Color.White;
             this.txtIDDel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtIDDel.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIDDel.Location = new System.Drawing.Point(7, 34);
@@ -412,28 +435,6 @@
             this.lblIDDel.Size = new System.Drawing.Size(35, 23);
             this.lblIDDel.TabIndex = 76;
             this.lblIDDel.Text = "ID:";
-            // 
-            // pbxLogo
-            // 
-            this.pbxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbxLogo.Image")));
-            this.pbxLogo.Location = new System.Drawing.Point(-1, -2);
-            this.pbxLogo.Name = "pbxLogo";
-            this.pbxLogo.Size = new System.Drawing.Size(234, 225);
-            this.pbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbxLogo.TabIndex = 73;
-            this.pbxLogo.TabStop = false;
-            // 
-            // btnVolver
-            // 
-            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVolver.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVolver.Location = new System.Drawing.Point(-1, 395);
-            this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(234, 38);
-            this.btnVolver.TabIndex = 74;
-            this.btnVolver.Text = "VOLVER";
-            this.btnVolver.UseVisualStyleBackColor = true;
-            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // GestInsumos
             // 
@@ -453,6 +454,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GestInsumos";
             this.pnlOpciones.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataViewMyInsumos)).EndInit();
             this.pnlAgrMiPro.ResumeLayout(false);
             this.pnlAgrMiPro.PerformLayout();
@@ -460,7 +462,6 @@
             this.pnlAdd.PerformLayout();
             this.pnlDel.ResumeLayout(false);
             this.pnlDel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).EndInit();
             this.ResumeLayout(false);
 
         }

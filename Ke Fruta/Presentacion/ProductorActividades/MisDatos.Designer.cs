@@ -45,8 +45,8 @@
             this.lblTipoCultivo = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
-            this.pbxLogo = new System.Windows.Forms.PictureBox();
             this.btnVolver = new System.Windows.Forms.Button();
+            this.pbxLogo = new System.Windows.Forms.PictureBox();
             this.gpboxDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataViewSectores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataViewTelefonos)).BeginInit();
@@ -72,7 +72,7 @@
             this.gpboxDatos.Enabled = false;
             this.gpboxDatos.Location = new System.Drawing.Point(234, 0);
             this.gpboxDatos.Name = "gpboxDatos";
-            this.gpboxDatos.Size = new System.Drawing.Size(711, 637);
+            this.gpboxDatos.Size = new System.Drawing.Size(711, 595);
             this.gpboxDatos.TabIndex = 60;
             this.gpboxDatos.TabStop = false;
             this.gpboxDatos.Text = "Datos";
@@ -119,7 +119,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtEmail.BackColor = System.Drawing.Color.White;
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtEmail.Enabled = false;
             this.txtEmail.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -142,7 +142,7 @@
             // 
             // txtTipo
             // 
-            this.txtTipo.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtTipo.BackColor = System.Drawing.Color.White;
             this.txtTipo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTipo.Enabled = false;
             this.txtTipo.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -154,7 +154,7 @@
             // 
             // txtRut
             // 
-            this.txtRut.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtRut.BackColor = System.Drawing.Color.White;
             this.txtRut.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRut.Enabled = false;
             this.txtRut.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -177,7 +177,7 @@
             // 
             // txtNom
             // 
-            this.txtNom.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtNom.BackColor = System.Drawing.Color.White;
             this.txtNom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNom.Enabled = false;
             this.txtNom.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -189,7 +189,7 @@
             // 
             // txtID
             // 
-            this.txtID.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtID.BackColor = System.Drawing.Color.White;
             this.txtID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtID.Enabled = false;
             this.txtID.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -240,18 +240,8 @@
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenu.Location = new System.Drawing.Point(0, 0);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(235, 637);
+            this.pnlMenu.Size = new System.Drawing.Size(235, 595);
             this.pnlMenu.TabIndex = 72;
-            // 
-            // pbxLogo
-            // 
-            this.pbxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbxLogo.Image")));
-            this.pbxLogo.Location = new System.Drawing.Point(0, 0);
-            this.pbxLogo.Name = "pbxLogo";
-            this.pbxLogo.Size = new System.Drawing.Size(234, 225);
-            this.pbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbxLogo.TabIndex = 75;
-            this.pbxLogo.TabStop = false;
             // 
             // btnVolver
             // 
@@ -265,16 +255,27 @@
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
+            // pbxLogo
+            // 
+            this.pbxLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbxLogo.Image")));
+            this.pbxLogo.Location = new System.Drawing.Point(0, 0);
+            this.pbxLogo.Name = "pbxLogo";
+            this.pbxLogo.Size = new System.Drawing.Size(234, 225);
+            this.pbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxLogo.TabIndex = 75;
+            this.pbxLogo.TabStop = false;
+            // 
             // MisDatos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(945, 637);
+            this.ClientSize = new System.Drawing.Size(945, 595);
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.gpboxDatos);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "MisDatos";

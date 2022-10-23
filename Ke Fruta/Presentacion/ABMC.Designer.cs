@@ -99,8 +99,8 @@
             this.lblTelefono = new System.Windows.Forms.Label();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pbxLogo = new System.Windows.Forms.PictureBox();
             this.btnVolver = new System.Windows.Forms.Button();
+            this.pbxLogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataViewDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataViewTelefono)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataViewSector)).BeginInit();
@@ -620,7 +620,7 @@
             this.pnlModificar.Controls.Add(this.txtNomMod);
             this.pnlModificar.Controls.Add(this.lblEmail);
             this.pnlModificar.Controls.Add(this.lblDatosMod);
-            this.pnlModificar.Location = new System.Drawing.Point(570, 96);
+            this.pnlModificar.Location = new System.Drawing.Point(592, 45);
             this.pnlModificar.Name = "pnlModificar";
             this.pnlModificar.Size = new System.Drawing.Size(329, 388);
             this.pnlModificar.TabIndex = 72;
@@ -635,7 +635,7 @@
             this.pnlModPass.Controls.Add(this.lblRepitaPassNueva);
             this.pnlModPass.Controls.Add(this.lblPassNue);
             this.pnlModPass.Controls.Add(this.txtPassNueva);
-            this.pnlModPass.Location = new System.Drawing.Point(37, 70);
+            this.pnlModPass.Location = new System.Drawing.Point(35, 68);
             this.pnlModPass.Name = "pnlModPass";
             this.pnlModPass.Size = new System.Drawing.Size(254, 249);
             this.pnlModPass.TabIndex = 81;
@@ -929,17 +929,6 @@
             this.panel1.Size = new System.Drawing.Size(235, 633);
             this.panel1.TabIndex = 81;
             // 
-            // pbxLogo
-            // 
-            this.pbxLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbxLogo.Image")));
-            this.pbxLogo.Location = new System.Drawing.Point(0, 0);
-            this.pbxLogo.Name = "pbxLogo";
-            this.pbxLogo.Size = new System.Drawing.Size(234, 225);
-            this.pbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbxLogo.TabIndex = 76;
-            this.pbxLogo.TabStop = false;
-            // 
             // btnVolver
             // 
             this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -951,6 +940,17 @@
             this.btnVolver.Text = "VOLVER";
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
+            // pbxLogo
+            // 
+            this.pbxLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbxLogo.Image")));
+            this.pbxLogo.Location = new System.Drawing.Point(0, 0);
+            this.pbxLogo.Name = "pbxLogo";
+            this.pbxLogo.Size = new System.Drawing.Size(234, 225);
+            this.pbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxLogo.TabIndex = 76;
+            this.pbxLogo.TabStop = false;
             // 
             // ABMC
             // 

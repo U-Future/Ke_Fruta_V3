@@ -205,5 +205,12 @@ namespace Ke_Fruta.Venta
             btnConcretar.Enabled = false;
             txtID.Clear();
         }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            Administrativo administrativo = new Administrativo();
+            administrativo.Show();
+            this.Hide();
+        }
     }
 }

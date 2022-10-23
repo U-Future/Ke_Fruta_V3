@@ -60,7 +60,7 @@
             // 
             // txtUsuario
             // 
-            this.txtUsuario.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtUsuario.BackColor = System.Drawing.Color.White;
             this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUsuario.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsuario.Location = new System.Drawing.Point(43, 342);
@@ -72,7 +72,7 @@
             // 
             // txtContraseña
             // 
-            this.txtContraseña.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtContraseña.BackColor = System.Drawing.Color.White;
             this.txtContraseña.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtContraseña.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtContraseña.Location = new System.Drawing.Point(43, 435);

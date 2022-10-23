@@ -218,7 +218,7 @@
             // 
             // txtID
             // 
-            this.txtID.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtID.BackColor = System.Drawing.Color.White;
             this.txtID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtID.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtID.Location = new System.Drawing.Point(603, 477);

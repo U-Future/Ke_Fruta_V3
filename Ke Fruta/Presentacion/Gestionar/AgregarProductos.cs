@@ -343,5 +343,12 @@ namespace Ke_Fruta.Presentacion.Gestionar
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            Administrativo administrativo = new Administrativo();
+            administrativo.Show();
+            this.Hide();
+        }
     }
 }

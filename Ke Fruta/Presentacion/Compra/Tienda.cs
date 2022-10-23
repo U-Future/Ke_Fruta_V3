@@ -175,6 +175,7 @@ namespace Ke_Fruta.Compra
                     Negocios.Metodos metodos = new Negocios.Metodos();
                     Negocios.Productos productos = new Negocios.Productos();
                     Negocios.Compra compra = new Negocios.Compra();
+                    Negocios.Notificar notificar = new Negocios.Notificar();
                     compra.IdProducto = txtID.Text;
                     compra.Verificar();
                     if(compra.Existe == true)
@@ -204,7 +205,10 @@ namespace Ke_Fruta.Compra
                                     productos.Quitar();
                                     if(productos.Quitado == true)
                                     {
+                                        notificar.idCliente = usuario.id;
+                                        notificar.NotificarCompra();
                                         MessageBox.Show("Compra realizada correctamente", "Aviso");
+                                        dataViewProductos.DataSource = null;
                                         txtID.Clear();
                                         numUpDnCantidad.Value = 0;
                                     }

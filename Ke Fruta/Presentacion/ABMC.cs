@@ -161,9 +161,6 @@ namespace Ke_Fruta
             btnModDatos.Enabled = true;
             btnEliminarTelefono.Enabled = true;
             btnAgregarTel.Enabled = true;
-            btnEliminarSector.Enabled = true;
-            btnAgregarSector.Enabled = true;
-
         }
 
         private void btnAltaUs_Click(object sender, EventArgs e)

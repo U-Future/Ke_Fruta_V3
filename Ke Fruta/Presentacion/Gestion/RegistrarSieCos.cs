@@ -16,12 +16,6 @@ namespace Ke_Fruta.Gestion
         {
             InitializeComponent();
         }
-
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-        }
-
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             if (txtBuscarSec.Text.Length < 3)
@@ -93,23 +87,19 @@ namespace Ke_Fruta.Gestion
             }
 
             try
-            { 
+            {
                 Negocios.Sector sector = new Negocios.Sector();
                 Negocios.SiembraCosecha siembracosecha = new Negocios.SiembraCosecha();
-            //sector.idSec = txtBuscarSec.Text;
-            //sector.BuscarSector();
-            siembracosecha.IdSec = txtBuscarSec.Text;
-            siembracosecha.BuscarSiembraCosecha();
-                if (siembracosecha.Existe == true)
-                {
                 siembracosecha.IdSec = txtBuscarSec.Text;
                 siembracosecha.BuscarSiembraCosecha();
+                if (siembracosecha.Existe == true)
+                {
+                    siembracosecha.IdSec = txtBuscarSec.Text;
+                    siembracosecha.BuscarSiembraCosecha();
 
                     siembracosecha.FSie = fechaSiembra;
                     siembracosecha.FCos = fechaCosecha;
                     siembracosecha.Cultivo = tipo;
-                    //siembracosecha.IdSec = txtBuscarSec.Text;
-                    //siembracosecha.IdPro = sector.idPro;
                     sector.Cultivo = tipo;
                     siembracosecha.ModificarSiembraCosecha();
                     sector.idSec = txtBuscarSec.Text;
@@ -118,8 +108,8 @@ namespace Ke_Fruta.Gestion
                 }
                 else
                 {
-                sector.idSec = txtBuscarSec.Text;
-                sector.BuscarSector();    
+                    sector.idSec = txtBuscarSec.Text;
+                    sector.BuscarSector();
 
                     siembracosecha.FSie = fechaSiembra;
                     siembracosecha.FCos = fechaCosecha;
@@ -138,28 +128,12 @@ namespace Ke_Fruta.Gestion
                 txtBuscarSec.Clear();
                 txtBuscarSec.Focus();
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Hubo problemas al registrar la siembra y cosecha", "Aviso");
+                return;
             }
-          
-            
-
         }
-
-        private void pbxSalir_Click(object sender, EventArgs e)
-        {
-            Administrativo administrativo = new Administrativo();
-            administrativo.Show();
-            this.Hide();
-        }
-
-        private void pbxMinimizar_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-
-        }
-
         private void txtBuscarSec_KeyPress(object sender, KeyPressEventArgs e)
         {
             txtBuscarSec.MaxLength = 15;
@@ -169,10 +143,11 @@ namespace Ke_Fruta.Gestion
 
             }
         }
-
-        public static void Aviso(string aviso)
+        private void btnVolver_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(aviso, "Aviso");
+            Administrativo administrativo = new Administrativo();
+            administrativo.Show();
+            this.Hide();
         }
     }
 }

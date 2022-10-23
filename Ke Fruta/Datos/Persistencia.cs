@@ -33,9 +33,8 @@ namespace Ke_Fruta.Datos
             {
                 cn.Open("odbc_kefruta", usuario, password); 
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
                 return;
             }
 

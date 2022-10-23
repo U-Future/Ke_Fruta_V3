@@ -28,11 +28,6 @@ namespace Ke_Fruta.Gestion
 
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-        }
-
         private void btnConsultar_Click(object sender, EventArgs e)
         {
             dataViewConSieCos.DataSource = null;
@@ -111,17 +106,11 @@ namespace Ke_Fruta.Gestion
             }
             
         }
-
-        private void pbxSalir_Click(object sender, EventArgs e)
+        private void btnVolver_Click(object sender, EventArgs e)
         {
             Administrativo administrativo = new Administrativo();
             administrativo.Show();
             this.Hide();
-        }
-
-        private void pbxMinimizar_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

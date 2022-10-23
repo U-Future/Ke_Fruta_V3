@@ -77,6 +77,7 @@
             this.lblHectNar = new System.Windows.Forms.Label();
             this.lblNarLim = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.lblCriterios = new System.Windows.Forms.Label();
             this.btnTrigo = new System.Windows.Forms.Button();
             this.btnVolverApp = new System.Windows.Forms.Button();
             this.btnManzana = new System.Windows.Forms.Button();
@@ -291,7 +292,7 @@
             this.lblCritPapas.Name = "lblCritPapas";
             this.lblCritPapas.Size = new System.Drawing.Size(578, 74);
             this.lblCritPapas.TabIndex = 62;
-            this.lblCritPapas.Text = "Criterios de las Papas";
+            this.lblCritPapas.Text = "Criterios de Papa";
             this.lblCritPapas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlCriZap
@@ -426,7 +427,7 @@
             this.lblCritZapallo.Name = "lblCritZapallo";
             this.lblCritZapallo.Size = new System.Drawing.Size(578, 74);
             this.lblCritZapallo.TabIndex = 62;
-            this.lblCritZapallo.Text = "Criterios del Zapallo ";
+            this.lblCritZapallo.Text = "Criterios de Zapallo ";
             this.lblCritZapallo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlCriMan
@@ -539,7 +540,7 @@
             this.lblManzana.Name = "lblManzana";
             this.lblManzana.Size = new System.Drawing.Size(578, 74);
             this.lblManzana.TabIndex = 62;
-            this.lblManzana.Text = "Criterios de la Manzana";
+            this.lblManzana.Text = "Criterios de Manzana";
             this.lblManzana.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlCriNarLim
@@ -674,12 +675,13 @@
             this.lblNarLim.Name = "lblNarLim";
             this.lblNarLim.Size = new System.Drawing.Size(578, 74);
             this.lblNarLim.TabIndex = 62;
-            this.lblNarLim.Text = "Criterios del Naranjo y Limon";
+            this.lblNarLim.Text = "Criterios de Naranjo y Limon";
             this.lblNarLim.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnlMenu.Controls.Add(this.lblCriterios);
             this.pnlMenu.Controls.Add(this.btnTrigo);
             this.pnlMenu.Controls.Add(this.btnVolverApp);
             this.pnlMenu.Controls.Add(this.btnManzana);
@@ -691,8 +693,19 @@
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenu.Location = new System.Drawing.Point(0, 0);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(235, 664);
+            this.pnlMenu.Size = new System.Drawing.Size(235, 609);
             this.pnlMenu.TabIndex = 303;
+            // 
+            // lblCriterios
+            // 
+            this.lblCriterios.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCriterios.Location = new System.Drawing.Point(2, 233);
+            this.lblCriterios.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCriterios.Name = "lblCriterios";
+            this.lblCriterios.Size = new System.Drawing.Size(233, 33);
+            this.lblCriterios.TabIndex = 85;
+            this.lblCriterios.Text = "CRITERIOS";
+            this.lblCriterios.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnTrigo
             // 
@@ -710,7 +723,7 @@
             // 
             this.btnVolverApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVolverApp.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVolverApp.Location = new System.Drawing.Point(0, 594);
+            this.btnVolverApp.Location = new System.Drawing.Point(0, 561);
             this.btnVolverApp.Name = "btnVolverApp";
             this.btnVolverApp.Size = new System.Drawing.Size(234, 37);
             this.btnVolverApp.TabIndex = 80;
@@ -841,7 +854,7 @@
             this.pnlFosforo.Controls.Add(this.lblNCriticoFosforo);
             this.pnlFosforo.Controls.Add(this.lblEQFFosforo);
             this.pnlFosforo.Controls.Add(this.lblFosforoTC);
-            this.pnlFosforo.Location = new System.Drawing.Point(339, 102);
+            this.pnlFosforo.Location = new System.Drawing.Point(388, 94);
             this.pnlFosforo.Margin = new System.Windows.Forms.Padding(2);
             this.pnlFosforo.Name = "pnlFosforo";
             this.pnlFosforo.Size = new System.Drawing.Size(484, 325);
@@ -987,10 +1000,10 @@
             this.pnlNitrogeno.Controls.Add(this.pnlZ3);
             this.pnlNitrogeno.Controls.Add(this.gpboxEstadios);
             this.pnlNitrogeno.Controls.Add(this.pnlZ2);
-            this.pnlNitrogeno.Location = new System.Drawing.Point(325, 84);
+            this.pnlNitrogeno.Location = new System.Drawing.Point(346, 94);
             this.pnlNitrogeno.Margin = new System.Windows.Forms.Padding(2);
             this.pnlNitrogeno.Name = "pnlNitrogeno";
-            this.pnlNitrogeno.Size = new System.Drawing.Size(559, 465);
+            this.pnlNitrogeno.Size = new System.Drawing.Size(559, 420);
             this.pnlNitrogeno.TabIndex = 306;
             this.pnlNitrogeno.Visible = false;
             // 
@@ -1119,7 +1132,7 @@
             this.gpboxEstadios.Controls.Add(this.rdbtnZ3);
             this.gpboxEstadios.Controls.Add(this.rdbtnZ2);
             this.gpboxEstadios.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpboxEstadios.Location = new System.Drawing.Point(71, 7);
+            this.gpboxEstadios.Location = new System.Drawing.Point(124, 12);
             this.gpboxEstadios.Margin = new System.Windows.Forms.Padding(2);
             this.gpboxEstadios.Name = "gpboxEstadios";
             this.gpboxEstadios.Padding = new System.Windows.Forms.Padding(2);
@@ -1326,7 +1339,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(1036, 664);
+            this.ClientSize = new System.Drawing.Size(1036, 609);
             this.Controls.Add(this.pnlNitrogeno);
             this.Controls.Add(this.pnlFosforo);
             this.Controls.Add(this.pnlSeleccione);
@@ -1471,5 +1484,6 @@
         private System.Windows.Forms.TextBox txtEQFZ;
         private System.Windows.Forms.Label lblNPlanta;
         private System.Windows.Forms.Label lblEQFZ3;
+        private System.Windows.Forms.Label lblCriterios;
     }
 }

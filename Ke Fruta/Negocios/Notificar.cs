@@ -21,6 +21,7 @@ namespace Ke_Fruta.Negocios
         protected string _Nombre;
         protected string _idSec;
         protected string _Cultivo;
+        protected string _idCliente;
 
         public string IdCompra 
         { 
@@ -57,43 +58,18 @@ namespace Ke_Fruta.Negocios
             get { return _Cultivo; }
             set { _Cultivo = value; }
         }
+        public string idCliente
+        {
+            get { return _idCliente; }
+            set { _idCliente = value; }
+        }
 
         Datos.Persistencia persistencia = new Datos.Persistencia();
 
-        public static void EnviarCorreo()
-            {
-                string htmlString = @"<body><style> body { font-family: Arial, Helvetica, sans-serif; color: green } </style> " +
-                "<h1>Notificación</h1> <p>Estimado " + "Lucas" + " " + "Sequeira" + ",<br> Le notificamos que se aproxima una proxima fecha de siembra.<br></p>" +
-                "<p>Le recordamos que deberá comprar la siguiente lista de productos previo a la siembra del cultivo:</p><br>" +
-                "<p>Le saluda atte,<br>Ke Fruta cooperativa agraria.</p></body>";
-
-                try
-                {
-                    MailMessage message = new MailMessage();
-                    SmtpClient smtp = new SmtpClient();
-                    message.From = new MailAddress("kefruta14@gmail.com");
-                    message.To.Add(new MailAddress("lucassequeira.134@gmail.com"));
-                    message.Subject = "Test";
-                    message.IsBodyHtml = true;
-                    message.Body = htmlString;
-                    smtp.Port = 587;
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.EnableSsl = true;
-                    smtp.UseDefaultCredentials = false;
-                    smtp.Credentials = new NetworkCredential("kefruta14@gmail.com", "pttcafstysfotpln");
-                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    smtp.Send(message);
-                }
-                catch (SmtpException ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-
-            }
         public void NotificarSiembraCosecha()
         {
             string htmlString = @"<body><style> body { font-family: Arial, Helvetica, sans-serif; color: green } </style> " +
-                "<h1>Notificación Ke Fruta</h1> <p>Estimado " + _Nombre + ".<br> Le notificamos que la proxima siembra y cosecha del Sector N°"+_idSec+ "<br>" +
+                "<h1>Notificación de Siembra y Cosecha</h1> <p>Estimado " + _Nombre + ".<br> Le notificamos que la proxima siembra y cosecha del Sector N°"+_idSec+ "<br>" +
                 "sera: <br> Fecha de Siembra: " + _FSiembra +" <br> Fecha de Cosecha: " + _FCosecha + "<br>Cultivo: "+_Cultivo+"</p><br>" +
                 "<p>Saludos Cordiales,<br>Ke Fruta cooperativa agraria.</p></body>";
 
@@ -103,7 +79,7 @@ namespace Ke_Fruta.Negocios
                 SmtpClient smtp = new SmtpClient();
                 message.From = new MailAddress("kefruta14@gmail.com");
                 message.To.Add(new MailAddress(_email));
-                message.Subject = "Ke Fruta: Aviso";
+                message.Subject = "Ke Fruta Siembras y Cosechas";
                 message.IsBodyHtml = true;
                 message.Body = htmlString;
                 smtp.Port = 587;
@@ -113,24 +89,26 @@ namespace Ke_Fruta.Negocios
                 smtp.Credentials = new NetworkCredential("kefruta14@gmail.com", "pttcafstysfotpln");
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.Send(message);
-                MessageBox.Show("Se notifico al Productor de la Siembra y Cosecha." , "Aviso");
             }
             catch (SmtpException ex)
             {
                 MessageBox.Show(ex.ToString());
             }
         }
-
         public void NotificarCompra()
         {
-            persistencia.AbrirConexion();
+            if (persistencia.cn.State == 0)
+            {
+                persistencia.AbrirConexion();
+            }
             string sql, sql1;
             object cantfilas;
             ADODB.Recordset rs, rs1;
 
             if (persistencia.cn.State != 0)
             {
-                sql = "Select * from compra where ID_Compra ='"+_idCompra+"'";
+                sql = "Select ID_Compra, ID_Cliente, ID_Producto, Cantidad,Costo, Fecha_de_Compra, Estado " +
+                    "from compra where ID_Cliente = '" + _idCliente + "' and ID_Compra = (select max(ID_Compra) ID_Compra from compra)";
 
                 try
                 {
@@ -143,6 +121,7 @@ namespace Ke_Fruta.Negocios
                 if (rs.RecordCount > 0)
                 {
                     string idPer, email, nombre, idPro, cantidad, costo;
+                    _idCompra = Convert.ToString(rs.Fields[0].Value);
                     idPer = Convert.ToString(rs.Fields[1].Value);
                     idPro = Convert.ToString(rs.Fields[2].Value);
                     cantidad = Convert.ToString(rs.Fields[3].Value);
@@ -165,12 +144,12 @@ namespace Ke_Fruta.Negocios
                         {
                             email = Convert.ToString(rs1.Fields[3].Value);
                             nombre = Convert.ToString(rs1.Fields[1].Value);
-
+                            persistencia.cn.Close();
                             string htmlString = @"<body><style> body { font-family: Arial, Helvetica, sans-serif; color: green } </style> " +
                             "<h1>Notificación de Compra</h1> " +
                             "<p>Estimado " + nombre + ".<br> " +
-                            "Le notificamos que su Compra N°" + _idCompra + "a sido registrada, esperamos que la recoja en <br> " +
-                            "nuestras oficinas, si deseea que nosotros se lo entreguemos, comuniquese con nosotros por <br>" +
+                            "Le notificamos que su Compra N°" + _idCompra + " a sido registrada, esperamos que la recoja en <br> " +
+                            "nuestras oficinas, si deseea que nosotros se lo entreguemos, comuniquese por <br>" +
                             "nuestro Email: kefruta14@gmail.com.</p><br>" +
                             "<p> <h2>Usted compro: </h2><br>" +
                             "ID Producto: "+ idPro + "<br>"+

@@ -51,12 +51,18 @@ namespace Ke_Fruta
                     Negocios.Metodos metodos = new Negocios.Metodos();
                     metodos.nombre = txtUsuario.Text;
                     metodos.BuscarUsuario();
-
-                    this.Hide();
+                    if(metodos.Existe == true)
+                    {
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuario o Password incorrecta", "Aviso");
+                    }
                 }
-                catch (Exception ex)
+                catch
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Usuario o Password incorrecta", "Aviso");
                     return;
                 }
             }

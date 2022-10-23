@@ -29,15 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistrarSieCos));
-            this.lblRegSieCos = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.lblSectorID = new System.Windows.Forms.Label();
             this.txtBuscarSec = new System.Windows.Forms.TextBox();
             this.lblFechaSiembra = new System.Windows.Forms.Label();
             this.lblFechaCosecha = new System.Windows.Forms.Label();
             this.btnRegistrar = new System.Windows.Forms.Button();
-            this.pbxMinimizar = new System.Windows.Forms.PictureBox();
-            this.pbxSalir = new System.Windows.Forms.PictureBox();
             this.gpboxFechas = new System.Windows.Forms.GroupBox();
             this.gpboxCultivo = new System.Windows.Forms.GroupBox();
             this.rdbtnCebada = new System.Windows.Forms.RadioButton();
@@ -49,30 +46,20 @@
             this.rdbtnTrigo = new System.Windows.Forms.RadioButton();
             this.dtimepickerCosecha = new System.Windows.Forms.DateTimePicker();
             this.dtimepickerSiembra = new System.Windows.Forms.DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxMinimizar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxSalir)).BeginInit();
+            this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnVolver = new System.Windows.Forms.Button();
+            this.pbxLogo = new System.Windows.Forms.PictureBox();
             this.gpboxFechas.SuspendLayout();
             this.gpboxCultivo.SuspendLayout();
+            this.pnlMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblRegSieCos
-            // 
-            this.lblRegSieCos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.lblRegSieCos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblRegSieCos.Font = new System.Drawing.Font("Century Gothic", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegSieCos.Location = new System.Drawing.Point(0, 0);
-            this.lblRegSieCos.Margin = new System.Windows.Forms.Padding(12, 0, 12, 0);
-            this.lblRegSieCos.Name = "lblRegSieCos";
-            this.lblRegSieCos.Size = new System.Drawing.Size(950, 137);
-            this.lblRegSieCos.TabIndex = 19;
-            this.lblRegSieCos.Text = "Registrar\r\nSiembra y Cosecha";
-            this.lblRegSieCos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnBuscar
             // 
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscar.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar.Location = new System.Drawing.Point(392, 227);
+            this.btnBuscar.Location = new System.Drawing.Point(636, 187);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(149, 38);
             this.btnBuscar.TabIndex = 53;
@@ -84,7 +71,7 @@
             // 
             this.lblSectorID.AutoSize = true;
             this.lblSectorID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSectorID.Location = new System.Drawing.Point(302, 151);
+            this.lblSectorID.Location = new System.Drawing.Point(546, 111);
             this.lblSectorID.Name = "lblSectorID";
             this.lblSectorID.Size = new System.Drawing.Size(126, 30);
             this.lblSectorID.TabIndex = 52;
@@ -92,10 +79,10 @@
             // 
             // txtBuscarSec
             // 
-            this.txtBuscarSec.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtBuscarSec.BackColor = System.Drawing.Color.White;
             this.txtBuscarSec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBuscarSec.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscarSec.Location = new System.Drawing.Point(307, 184);
+            this.txtBuscarSec.Location = new System.Drawing.Point(551, 144);
             this.txtBuscarSec.Name = "txtBuscarSec";
             this.txtBuscarSec.Size = new System.Drawing.Size(318, 37);
             this.txtBuscarSec.TabIndex = 51;
@@ -134,30 +121,6 @@
             this.btnRegistrar.UseVisualStyleBackColor = true;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
-            // pbxMinimizar
-            // 
-            this.pbxMinimizar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pbxMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("pbxMinimizar.Image")));
-            this.pbxMinimizar.Location = new System.Drawing.Point(878, 12);
-            this.pbxMinimizar.Name = "pbxMinimizar";
-            this.pbxMinimizar.Size = new System.Drawing.Size(28, 34);
-            this.pbxMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbxMinimizar.TabIndex = 73;
-            this.pbxMinimizar.TabStop = false;
-            this.pbxMinimizar.Click += new System.EventHandler(this.pbxMinimizar_Click);
-            // 
-            // pbxSalir
-            // 
-            this.pbxSalir.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pbxSalir.Image = ((System.Drawing.Image)(resources.GetObject("pbxSalir.Image")));
-            this.pbxSalir.Location = new System.Drawing.Point(912, 12);
-            this.pbxSalir.Name = "pbxSalir";
-            this.pbxSalir.Size = new System.Drawing.Size(28, 34);
-            this.pbxSalir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbxSalir.TabIndex = 74;
-            this.pbxSalir.TabStop = false;
-            this.pbxSalir.Click += new System.EventHandler(this.pbxSalir_Click);
-            // 
             // gpboxFechas
             // 
             this.gpboxFechas.Controls.Add(this.gpboxCultivo);
@@ -166,11 +129,10 @@
             this.gpboxFechas.Controls.Add(this.lblFechaSiembra);
             this.gpboxFechas.Controls.Add(this.btnRegistrar);
             this.gpboxFechas.Controls.Add(this.lblFechaCosecha);
-            this.gpboxFechas.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.gpboxFechas.Enabled = false;
-            this.gpboxFechas.Location = new System.Drawing.Point(0, 265);
+            this.gpboxFechas.Location = new System.Drawing.Point(242, 259);
             this.gpboxFechas.Name = "gpboxFechas";
-            this.gpboxFechas.Size = new System.Drawing.Size(950, 292);
+            this.gpboxFechas.Size = new System.Drawing.Size(954, 286);
             this.gpboxFechas.TabIndex = 75;
             this.gpboxFechas.TabStop = false;
             // 
@@ -183,7 +145,7 @@
             this.gpboxCultivo.Controls.Add(this.rdbtnNaranja);
             this.gpboxCultivo.Controls.Add(this.rdbtnManzana);
             this.gpboxCultivo.Controls.Add(this.rdbtnTrigo);
-            this.gpboxCultivo.Location = new System.Drawing.Point(508, 45);
+            this.gpboxCultivo.Location = new System.Drawing.Point(520, 36);
             this.gpboxCultivo.Name = "gpboxCultivo";
             this.gpboxCultivo.Size = new System.Drawing.Size(434, 171);
             this.gpboxCultivo.TabIndex = 63;
@@ -276,47 +238,75 @@
             this.dtimepickerSiembra.Size = new System.Drawing.Size(491, 37);
             this.dtimepickerSiembra.TabIndex = 61;
             // 
+            // pnlMenu
+            // 
+            this.pnlMenu.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnlMenu.Controls.Add(this.btnVolver);
+            this.pnlMenu.Controls.Add(this.pbxLogo);
+            this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlMenu.Location = new System.Drawing.Point(0, 0);
+            this.pnlMenu.Name = "pnlMenu";
+            this.pnlMenu.Size = new System.Drawing.Size(236, 557);
+            this.pnlMenu.TabIndex = 76;
+            // 
+            // btnVolver
+            // 
+            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVolver.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVolver.Location = new System.Drawing.Point(0, 493);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(236, 38);
+            this.btnVolver.TabIndex = 76;
+            this.btnVolver.Text = "VOLVER";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
+            // pbxLogo
+            // 
+            this.pbxLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbxLogo.Image")));
+            this.pbxLogo.Location = new System.Drawing.Point(0, 0);
+            this.pbxLogo.Name = "pbxLogo";
+            this.pbxLogo.Size = new System.Drawing.Size(234, 225);
+            this.pbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxLogo.TabIndex = 75;
+            this.pbxLogo.TabStop = false;
+            // 
             // RegistrarSieCos
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(950, 557);
+            this.BackColor = System.Drawing.Color.Gainsboro;
+            this.ClientSize = new System.Drawing.Size(1208, 557);
+            this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.gpboxFechas);
-            this.Controls.Add(this.pbxSalir);
-            this.Controls.Add(this.pbxMinimizar);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.lblSectorID);
-            this.Controls.Add(this.lblRegSieCos);
             this.Controls.Add(this.txtBuscarSec);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "RegistrarSieCos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RegistrarSieCos";
-            ((System.ComponentModel.ISupportInitialize)(this.pbxMinimizar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxSalir)).EndInit();
             this.gpboxFechas.ResumeLayout(false);
             this.gpboxFechas.PerformLayout();
             this.gpboxCultivo.ResumeLayout(false);
             this.gpboxCultivo.PerformLayout();
+            this.pnlMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblRegSieCos;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Label lblSectorID;
         private System.Windows.Forms.TextBox txtBuscarSec;
         private System.Windows.Forms.Label lblFechaSiembra;
         private System.Windows.Forms.Label lblFechaCosecha;
         private System.Windows.Forms.Button btnRegistrar;
-        private System.Windows.Forms.PictureBox pbxMinimizar;
-        private System.Windows.Forms.PictureBox pbxSalir;
         private System.Windows.Forms.GroupBox gpboxFechas;
         private System.Windows.Forms.DateTimePicker dtimepickerCosecha;
         private System.Windows.Forms.DateTimePicker dtimepickerSiembra;
@@ -328,5 +318,8 @@
         private System.Windows.Forms.RadioButton rdbtnNaranja;
         private System.Windows.Forms.RadioButton rdbtnManzana;
         private System.Windows.Forms.RadioButton rdbtnTrigo;
+        private System.Windows.Forms.Panel pnlMenu;
+        private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.PictureBox pbxLogo;
     }
 }

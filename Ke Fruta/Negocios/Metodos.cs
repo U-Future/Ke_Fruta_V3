@@ -11,11 +11,16 @@ namespace Ke_Fruta.Negocios
     internal class Metodos
     {
         protected static string _nombre;
-
+        protected bool _Existe;
         public string nombre
         {
             get { return _nombre; }
             set { _nombre = value; }
+        }
+        public bool Existe
+        {
+            get { return _Existe; }
+            set { _Existe = value; }
         }
 
         Datos.Persistencia persistencia = new Datos.Persistencia();
@@ -44,7 +49,7 @@ namespace Ke_Fruta.Negocios
                 }
                 if (rs.RecordCount > 0)
                 {
-
+                    _Existe = true;
                     switch (rs.Fields[2].Value.ToString())
                     {
                         case "A"://Administrativo
@@ -60,6 +65,10 @@ namespace Ke_Fruta.Negocios
                             tienda.Show();
                             break;
                     }
+                }
+                else
+                {
+                    _Existe = false;
                 }
             }
         }                                                

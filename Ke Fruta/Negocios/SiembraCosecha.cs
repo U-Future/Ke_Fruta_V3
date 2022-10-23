@@ -15,62 +15,31 @@ namespace Ke_Fruta.Negocios
         protected string _FCos;
         protected string _Cultivo;
         protected bool _Existe;
-        protected List<string> _ListarPro = new List<string>();
-        protected List<string> _ListarSec = new List<string>();
-        protected List<string> _ListarFSie = new List<string>();
-        protected List<string> _ListarFCos = new List<string>();
-        protected List<string> _ListarCultivo = new List<string>();
         protected DataTable _dt = new DataTable();
 
         public DataTable dt
         {
             get { return _dt; }
         }
-
-        public List<string> ListarPro
-        {
-            get { return _ListarPro; }
-            set { _ListarPro = value; }
-        }
         public string IdPro
         {
             get { return _idPro; }
             set { _idPro = value; }
-        }
-        public List<string> ListarSec
-        {
-            get { return _ListarSec; }
-            set { _ListarSec = value; }
         }
         public string IdSec
         {
             get { return _idSec; }  
             set { _idSec = value; }
         }
-        public List<string> ListarFSie
-        {
-            get { return _ListarFSie; }
-            set { _ListarFSie = value; }
-        }
         public string FSie
         {
             get { return _FSie; }
             set { _FSie = value; }
         }
-        public List<string> ListarFCos
-        {
-            get { return _ListarFCos; }
-            set { _ListarFCos = value; }
-        }
         public string FCos
         {
             get { return _FCos; }
             set { _FCos = value; }
-        }
-        public List<string> ListarCultivo
-        {
-            get { return _ListarCultivo; }
-            set { _ListarCultivo = value; }
         }
         public string Cultivo
         {

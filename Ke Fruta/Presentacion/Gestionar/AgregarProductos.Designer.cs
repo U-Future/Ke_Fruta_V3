@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgregarProductos));
-            this.lblAgregarProductos = new System.Windows.Forms.Label();
-            this.pbxSalir = new System.Windows.Forms.PictureBox();
-            this.pbxMinimizar = new System.Windows.Forms.PictureBox();
             this.gpboxDesea = new System.Windows.Forms.GroupBox();
             this.rdbtnQuitar = new System.Windows.Forms.RadioButton();
             this.rdbtnAgregar = new System.Windows.Forms.RadioButton();
@@ -60,52 +57,18 @@
             this.btnListarTodo = new System.Windows.Forms.Button();
             this.btnBajaProducto = new System.Windows.Forms.Button();
             this.btnAltaProducto = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxSalir)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxMinimizar)).BeginInit();
+            this.pnlMenu = new System.Windows.Forms.Panel();
+            this.pbxLogo = new System.Windows.Forms.PictureBox();
+            this.btnVolver = new System.Windows.Forms.Button();
             this.gpboxDesea.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownCantidad)).BeginInit();
             this.gpboxAgregarProducto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownKG)).BeginInit();
             this.gpboxAgregar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataViewProductos)).BeginInit();
+            this.pnlMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblAgregarProductos
-            // 
-            this.lblAgregarProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.lblAgregarProductos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblAgregarProductos.Font = new System.Drawing.Font("Century Gothic", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAgregarProductos.Location = new System.Drawing.Point(0, 0);
-            this.lblAgregarProductos.Margin = new System.Windows.Forms.Padding(19, 0, 19, 0);
-            this.lblAgregarProductos.Name = "lblAgregarProductos";
-            this.lblAgregarProductos.Size = new System.Drawing.Size(1218, 128);
-            this.lblAgregarProductos.TabIndex = 61;
-            this.lblAgregarProductos.Text = "Agregar Productos";
-            this.lblAgregarProductos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbxSalir
-            // 
-            this.pbxSalir.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pbxSalir.Image = ((System.Drawing.Image)(resources.GetObject("pbxSalir.Image")));
-            this.pbxSalir.Location = new System.Drawing.Point(1178, 12);
-            this.pbxSalir.Name = "pbxSalir";
-            this.pbxSalir.Size = new System.Drawing.Size(28, 34);
-            this.pbxSalir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbxSalir.TabIndex = 305;
-            this.pbxSalir.TabStop = false;
-            this.pbxSalir.Click += new System.EventHandler(this.pbxSalir_Click);
-            // 
-            // pbxMinimizar
-            // 
-            this.pbxMinimizar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pbxMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("pbxMinimizar.Image")));
-            this.pbxMinimizar.Location = new System.Drawing.Point(1144, 12);
-            this.pbxMinimizar.Name = "pbxMinimizar";
-            this.pbxMinimizar.Size = new System.Drawing.Size(28, 34);
-            this.pbxMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbxMinimizar.TabIndex = 306;
-            this.pbxMinimizar.TabStop = false;
-            this.pbxMinimizar.Click += new System.EventHandler(this.pbxMinimizar_Click);
             // 
             // gpboxDesea
             // 
@@ -150,7 +113,7 @@
             this.btnDone.Name = "btnDone";
             this.btnDone.Size = new System.Drawing.Size(134, 38);
             this.btnDone.TabIndex = 316;
-            this.btnDone.Text = "DONE";
+            this.btnDone.Text = "LISTO";
             this.btnDone.UseVisualStyleBackColor = true;
             this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
             // 
@@ -165,7 +128,7 @@
             // 
             // numUpDownCantidad
             // 
-            this.numUpDownCantidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.numUpDownCantidad.BackColor = System.Drawing.Color.White;
             this.numUpDownCantidad.Location = new System.Drawing.Point(11, 66);
             this.numUpDownCantidad.Name = "numUpDownCantidad";
             this.numUpDownCantidad.Size = new System.Drawing.Size(274, 32);
@@ -175,19 +138,20 @@
             // lblInsumo
             // 
             this.lblInsumo.AutoSize = true;
-            this.lblInsumo.Location = new System.Drawing.Point(6, 163);
+            this.lblInsumo.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInsumo.Location = new System.Drawing.Point(3, 273);
             this.lblInsumo.Name = "lblInsumo";
-            this.lblInsumo.Size = new System.Drawing.Size(187, 30);
+            this.lblInsumo.Size = new System.Drawing.Size(151, 23);
             this.lblInsumo.TabIndex = 313;
             this.lblInsumo.Text = "ID PRODUCTO:";
             // 
             // txtID
             // 
-            this.txtID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtID.BackColor = System.Drawing.Color.White;
             this.txtID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtID.Location = new System.Drawing.Point(11, 196);
+            this.txtID.Location = new System.Drawing.Point(0, 299);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(279, 37);
+            this.txtID.Size = new System.Drawing.Size(236, 37);
             this.txtID.TabIndex = 312;
             this.txtID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress);
@@ -207,7 +171,7 @@
             this.gpboxAgregarProducto.Controls.Add(this.txtNom);
             this.gpboxAgregarProducto.Controls.Add(this.lblNombre);
             this.gpboxAgregarProducto.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpboxAgregarProducto.Location = new System.Drawing.Point(433, 66);
+            this.gpboxAgregarProducto.Location = new System.Drawing.Point(602, 98);
             this.gpboxAgregarProducto.Name = "gpboxAgregarProducto";
             this.gpboxAgregarProducto.Size = new System.Drawing.Size(307, 472);
             this.gpboxAgregarProducto.TabIndex = 319;
@@ -235,7 +199,7 @@
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(142, 38);
             this.btnAgregar.TabIndex = 318;
-            this.btnAgregar.Text = "DONE";
+            this.btnAgregar.Text = "LISTO";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
@@ -250,7 +214,7 @@
             // 
             // numUpDownKG
             // 
-            this.numUpDownKG.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.numUpDownKG.BackColor = System.Drawing.Color.White;
             this.numUpDownKG.Location = new System.Drawing.Point(63, 307);
             this.numUpDownKG.Name = "numUpDownKG";
             this.numUpDownKG.Size = new System.Drawing.Size(183, 34);
@@ -259,7 +223,7 @@
             // 
             // txtPrecio
             // 
-            this.txtPrecio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtPrecio.BackColor = System.Drawing.Color.White;
             this.txtPrecio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPrecio.Location = new System.Drawing.Point(63, 246);
             this.txtPrecio.Name = "txtPrecio";
@@ -279,7 +243,7 @@
             // 
             // txtFabricante
             // 
-            this.txtFabricante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtFabricante.BackColor = System.Drawing.Color.White;
             this.txtFabricante.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFabricante.Location = new System.Drawing.Point(63, 185);
             this.txtFabricante.Name = "txtFabricante";
@@ -323,7 +287,7 @@
             // 
             // txtNom
             // 
-            this.txtNom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtNom.BackColor = System.Drawing.Color.White;
             this.txtNom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNom.Location = new System.Drawing.Point(63, 64);
             this.txtNom.Name = "txtNom";
@@ -349,7 +313,7 @@
             this.gpboxAgregar.Controls.Add(this.btnDone);
             this.gpboxAgregar.Controls.Add(this.numUpDownCantidad);
             this.gpboxAgregar.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpboxAgregar.Location = new System.Drawing.Point(811, 380);
+            this.gpboxAgregar.Location = new System.Drawing.Point(283, 258);
             this.gpboxAgregar.Name = "gpboxAgregar";
             this.gpboxAgregar.Size = new System.Drawing.Size(295, 244);
             this.gpboxAgregar.TabIndex = 329;
@@ -373,9 +337,9 @@
             // 
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscar.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar.Location = new System.Drawing.Point(11, 239);
+            this.btnBuscar.Location = new System.Drawing.Point(0, 342);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(279, 38);
+            this.btnBuscar.Size = new System.Drawing.Size(236, 38);
             this.btnBuscar.TabIndex = 320;
             this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -384,10 +348,9 @@
             // dataViewProductos
             // 
             this.dataViewProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataViewProductos.BackgroundColor = System.Drawing.Color.DarkSeaGreen;
             this.dataViewProductos.ColumnHeadersHeight = 34;
             this.dataViewProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataViewProductos.Location = new System.Drawing.Point(308, 163);
+            this.dataViewProductos.Location = new System.Drawing.Point(283, 39);
             this.dataViewProductos.Name = "dataViewProductos";
             this.dataViewProductos.RowHeadersWidth = 62;
             this.dataViewProductos.RowTemplate.Height = 28;
@@ -398,9 +361,9 @@
             // 
             this.btnListarTodo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnListarTodo.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListarTodo.Location = new System.Drawing.Point(11, 283);
+            this.btnListarTodo.Location = new System.Drawing.Point(0, 420);
             this.btnListarTodo.Name = "btnListarTodo";
-            this.btnListarTodo.Size = new System.Drawing.Size(279, 38);
+            this.btnListarTodo.Size = new System.Drawing.Size(236, 38);
             this.btnListarTodo.TabIndex = 331;
             this.btnListarTodo.Text = "LISTAR PRODUCTOS";
             this.btnListarTodo.UseVisualStyleBackColor = true;
@@ -411,9 +374,9 @@
             this.btnBajaProducto.Enabled = false;
             this.btnBajaProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBajaProducto.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBajaProducto.Location = new System.Drawing.Point(11, 371);
+            this.btnBajaProducto.Location = new System.Drawing.Point(0, 508);
             this.btnBajaProducto.Name = "btnBajaProducto";
-            this.btnBajaProducto.Size = new System.Drawing.Size(279, 38);
+            this.btnBajaProducto.Size = new System.Drawing.Size(236, 38);
             this.btnBajaProducto.TabIndex = 332;
             this.btnBajaProducto.Text = "BAJA";
             this.btnBajaProducto.UseVisualStyleBackColor = true;
@@ -423,41 +386,71 @@
             // 
             this.btnAltaProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAltaProducto.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAltaProducto.Location = new System.Drawing.Point(11, 327);
+            this.btnAltaProducto.Location = new System.Drawing.Point(0, 464);
             this.btnAltaProducto.Name = "btnAltaProducto";
-            this.btnAltaProducto.Size = new System.Drawing.Size(279, 38);
+            this.btnAltaProducto.Size = new System.Drawing.Size(236, 38);
             this.btnAltaProducto.TabIndex = 333;
             this.btnAltaProducto.Text = "ALTA";
             this.btnAltaProducto.UseVisualStyleBackColor = true;
             this.btnAltaProducto.Click += new System.EventHandler(this.btnAltaProducto_Click);
             // 
+            // pnlMenu
+            // 
+            this.pnlMenu.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnlMenu.Controls.Add(this.btnVolver);
+            this.pnlMenu.Controls.Add(this.btnAltaProducto);
+            this.pnlMenu.Controls.Add(this.pbxLogo);
+            this.pnlMenu.Controls.Add(this.btnBajaProducto);
+            this.pnlMenu.Controls.Add(this.btnListarTodo);
+            this.pnlMenu.Controls.Add(this.txtID);
+            this.pnlMenu.Controls.Add(this.lblInsumo);
+            this.pnlMenu.Controls.Add(this.btnBuscar);
+            this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlMenu.Location = new System.Drawing.Point(0, 0);
+            this.pnlMenu.Name = "pnlMenu";
+            this.pnlMenu.Size = new System.Drawing.Size(236, 636);
+            this.pnlMenu.TabIndex = 330;
+            // 
+            // pbxLogo
+            // 
+            this.pbxLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbxLogo.Image")));
+            this.pbxLogo.Location = new System.Drawing.Point(0, 0);
+            this.pbxLogo.Name = "pbxLogo";
+            this.pbxLogo.Size = new System.Drawing.Size(234, 225);
+            this.pbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxLogo.TabIndex = 76;
+            this.pbxLogo.TabStop = false;
+            // 
+            // btnVolver
+            // 
+            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVolver.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVolver.Location = new System.Drawing.Point(0, 577);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(236, 38);
+            this.btnVolver.TabIndex = 319;
+            this.btnVolver.Text = "VOLVER";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
             // AgregarProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(1218, 636);
-            this.Controls.Add(this.btnAltaProducto);
-            this.Controls.Add(this.btnBajaProducto);
-            this.Controls.Add(this.btnListarTodo);
-            this.Controls.Add(this.dataViewProductos);
+            this.BackColor = System.Drawing.Color.Gainsboro;
+            this.ClientSize = new System.Drawing.Size(1205, 636);
             this.Controls.Add(this.gpboxAgregar);
-            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.gpboxAgregarProducto);
-            this.Controls.Add(this.lblInsumo);
-            this.Controls.Add(this.txtID);
-            this.Controls.Add(this.pbxMinimizar);
-            this.Controls.Add(this.pbxSalir);
-            this.Controls.Add(this.lblAgregarProductos);
+            this.Controls.Add(this.pnlMenu);
+            this.Controls.Add(this.dataViewProductos);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "AgregarProductos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AgregarProductos";
-            ((System.ComponentModel.ISupportInitialize)(this.pbxSalir)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxMinimizar)).EndInit();
             this.gpboxDesea.ResumeLayout(false);
             this.gpboxDesea.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownCantidad)).EndInit();
@@ -467,16 +460,14 @@
             this.gpboxAgregar.ResumeLayout(false);
             this.gpboxAgregar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataViewProductos)).EndInit();
+            this.pnlMenu.ResumeLayout(false);
+            this.pnlMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblAgregarProductos;
-        private System.Windows.Forms.PictureBox pbxSalir;
-        private System.Windows.Forms.PictureBox pbxMinimizar;
         private System.Windows.Forms.GroupBox gpboxDesea;
         private System.Windows.Forms.RadioButton rdbtnQuitar;
         private System.Windows.Forms.RadioButton rdbtnAgregar;
@@ -505,5 +496,8 @@
         private System.Windows.Forms.Button btnListarTodo;
         private System.Windows.Forms.Button btnBajaProducto;
         private System.Windows.Forms.Button btnAltaProducto;
+        private System.Windows.Forms.Panel pnlMenu;
+        private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.PictureBox pbxLogo;
     }
 }

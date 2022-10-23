@@ -76,7 +76,6 @@ namespace Ke_Fruta.Gestionar
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-
             Agregar();
         }
 
